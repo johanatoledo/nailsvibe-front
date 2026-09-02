@@ -1,0 +1,477 @@
+@import "tailwindcss";
+
+@theme {
+  --color-nails-brown: #7f6244;
+  --color-nails-black: #000000;
+  --color-nails-yellow: #fff1b0;
+  --color-nails-white: #fffdf7;
+  --color-nails-caramelo:#C4890D;
+  --color-nails-gold:#8C5A18;
+  --color-nails-champagne:#F5EBE6;
+  --font-title: var(--font-cormorant);
+  --font-body: var(--font-jakarta);
+  
+  
+
+}
+
+/* ===== RESET ===== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--color-nails-white);
+  
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* ===== ELEMENTOS ===== */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.icon-whatsapp {
+  color: green;
+  font-size: 1.5rem;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  user-select: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+/* ===== SELECTION ===== */
+
+::selection {
+  background: var(--color-nails-caramelo);
+  color: var(--color-nails-white);
+}
+.nails-container {
+  width: min(100% - 1.5rem, 1320px);
+  margin-inline: auto;
+}
+/* ===== ESTILOS PARA BOTONES DE LAS CATEGORIAS ===== */
+.nails-category-button-container {
+  color:var(--color-nails-brown);
+  background-color: var(--color-nails-champagne);
+  opacity: 0.75;
+  border-color: var(--color-nails-brown);
+  
+  
+}
+
+.nails-category-button {
+  border-radius: 999px;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.nails-category-button:hover {
+  transform: translateY(-2px);
+}
+
+.nails-category-button-active {
+  background: var(--color-nails-brown);
+  color: white;
+  box-shadow: 0 12px 24px rgb(0 0 0 / 0.10);
+}
+
+.nails-category-button-inactive {
+  background: #fffaf5;
+  color: var(--color-nails-brown);
+  
+}
+
+.nails-category-button-inactive:hover {
+  background: var(--color-nails-brown);
+  color: var(--color-nails-yellow);
+  box-shadow: 0 8px 18px rgb(0 0 0 / 0.07);
+}
+/* ===== SCROLLBAR ===== */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #efe3d8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-nails-brown);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-nails-brown);
+}
+
+/* ===== ESTILOS TARJETAS ===== */
+.nails-product-card {
+  overflow: hidden;
+  
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem; 
+
+ 
+  border-radius:1rem ; 
+
+  /* Fondo elegante */
+  background: var(--color-nails-champagne, #FFFDF7);
+
+  border: 1px solid rgba(196, 137, 13, 0.25);
+
+  box-shadow: 0 4px 20px -2px rgba(94, 75, 60, 0.08);
+
+  /* Transiciones suaves */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease;
+}
+.nails-product-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(196, 137, 13, 0.6); 
+  box-shadow: 0 10px 25px -4px rgba(94, 75, 60, 0.15);
+  border: 5px solid rgba(196, 137, 13, 0.25);
+}
+
+.nails-product-image-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgb(0 0 0 / 0.18),
+      transparent 45%
+    );
+}
+
+
+
+.nails-product-price {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+
+  color: var(--color-nails-black);
+}
+
+.nails-button-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  border-radius: 1rem;
+
+  background: var(--color-nails-brown);
+
+  padding: 0.8rem;
+
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  color: var(--color-nails-white);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nails-button-add:hover {
+  transform: translateY(-2px);
+
+  background: var(--color-nails-brown);
+
+  box-shadow:
+    0 12px 24px rgb(92 61 46 / 0.18);
+}
+
+.nails-button-remove {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  border-radius: 1rem;
+
+  background: var(--color-nails-caramelo);
+
+  padding: 0.8rem 1rem;
+
+  font-size: 0.82rem;
+  font-weight: 900;
+
+  color: var(--color-nails-white);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.nails-button-remove:hover {
+  transform: translateY(-2px);
+
+  background: var(--color-nails-caramelo);
+}
+
+/* ===== ESTILOS CARRITO ===== */
+.nails-icon-cart{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+  background: var(--color-pink-chic);
+  padding: 0.45rem 0.9rem;
+  color: var(--color-black-chic);
+}
+
+.nails-button-cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  border-radius: 1rem;
+
+  background: var(--color-gold-chic);
+
+  padding: 0.8rem 1rem;
+
+  font-size: 0.82rem;
+  font-weight: 900;
+
+  color: var(--color-black-chic);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nails-button-cart:hover {
+  transform: translateY(-2px);
+
+  background: var(--color-caramelo-chic);
+
+  box-shadow:
+    0 12px 24px rgb(92 61 46 / 0.18);
+}
+/* ===== UTILIDADES ===== */
+
+@media (min-width: 768px) {
+  .nails-container {
+    width: min(100% - 3rem, 1320px);
+  }
+}
+
+.nails-card-hover {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.nails-card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 40px rgb(0 0 0 / 0.08),
+    0 8px 16px rgb(0 0 0 / 0.05);
+}
+
+/* ===== GLASS EFFECT ===== */
+
+.nails-glass {
+  background: rgb(255 255 255 / 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ===== SOMBRAS ===== */
+
+.nails-shadow {
+  box-shadow:
+    0 10px 25px rgb(0 0 0 / 0.06),
+    0 4px 10px rgb(0 0 0 / 0.04);
+}
+
+.nails-shadow-lg {
+  box-shadow:
+    0 20px 40px rgb(0 0 0 / 0.10),
+    0 10px 20px rgb(0 0 0 / 0.06);
+}
+
+/* ===== ANIMACIONES ===== */
+
+.nails-fade-in {
+  animation: nailsFadeIn 0.4s ease;
+}
+
+@keyframes nailsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== BADGES ===== */
+
+.nails-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+
+  background: var(--color-nails-caramelo);
+
+  padding: 0.55rem 1rem;
+
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: var(--color-nails-white);
+}
+
+/* ===== TITULOS ===== */
+
+.nails-title {
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--color-nails-black);
+}
+
+.nails-subtitle {
+  color: var(--color-nails-black);
+  line-height: 1.7;
+}
+.nails-precio{
+  color: var(--color-nails-caramelo);
+}
+
+/* ===== INPUTS ===== */
+
+.nails-input {
+  width: 100%;
+
+  border-radius: 1rem;
+  border: 1px solid #e5d7ca;
+
+  background: var(--color-white-chic);
+
+  padding: 0.9rem 1rem;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nails-input:focus {
+  border-color: var(--color-caramelo-chic);
+
+  box-shadow:
+    0 0 0 4px rgb(201 123 54 / 0.10);
+}
+
+/* ===== BOTONES ===== */
+
+.nails-button-primary {
+  border-radius: 1rem;
+
+  background: var(--color-caramelo-chic);
+
+  padding: 0.95rem 1.4rem;
+
+  font-weight: 900;
+  color: var(--color-black-chic);
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.nails-button-primary:hover {
+  background: var(--color-gold-chic);
+  transform: translateY(-2px);
+}
+
+.nails-button-secondary {
+  border-radius: 1rem;
+
+  background: var(--color-white-chic);
+
+  padding: 0.9rem 1.2rem;
+
+  font-weight: 800;
+
+  color: var(--color-black-chic);
+
+  border: 1px solid #eadccf;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.nails-button-secondary:hover {
+  background: var(--color-white-chic);
+  border-color: var(--color-caramelo-chic);
+}

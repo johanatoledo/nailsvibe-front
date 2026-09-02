@@ -3,7 +3,7 @@ export const productos = [
     id: 1,
     nombre: "Exfoliacion Pies",
     descripcion:
-      "Exfoliación profunda para eliminar células muertas y suavizar la piel de los pies, dejando una sensación de frescura y bienestar.",
+      "Exfoliación profunda. Masaje relajante. Hidratación intensiva. Eliminación de células muertas y suavizado de la piel de los pies.",
     precio: 25,
     categoria: "exfoliacion",
     imagen: "/images/exfoliacionpies.png",
@@ -12,25 +12,25 @@ export const productos = [
     id: 2,
     nombre: "Exfoliacion Manos",
     descripcion:
-      "Exfoliación profunda con parafina para eliminar células muertas y suavizar la piel de las manos, dejando una sensación de frescura y bienestar.",
+      "Exfoliación profunda con parafina. Eliminacion de células muertas. Masaje relajante. Hidratación intensiva. Suavizado de la piel de las manos.",
     precio: 25,
     categoria: "exfoliacion",
     imagen: "/images/parafina.png",
   },
   {
     id: 3,
-    nombre: "Manicura y pedicura con esmalte semipermanente",
+    nombre: "Manicura y pedicura",
     descripcion:
-      "Manicura y pedicura completa con esmalte semipermanente, que incluye limado, cutículas, masaje y aplicación de esmalte duradero.",
+      "Manicura y pedicura completa con esmalte semipermanente. Limado. Cutículas, masaje y aplicación de esmalte duradero.",
     precio: 45,
     categoria: "Manicura semipermanente",
     imagen: "/images/manicuraypedi.png",
   },
   {
     id: 4,
-    nombre: "Uñas acrílicas con diseño personalizado",
+    nombre: "Uñas acrilicas",
     descripcion:
-      "Uñas acrílicas de alta calidad con diseño personalizado, que incluye preparación de uñas, aplicación de acrílico y decoración según tus preferencias.",
+      "Preparación de uñas.Diseño personalizado.Aplicación de acrílico y decoración según tus preferencias.",
     precio: 70,
     categoria: "Uñas acrílicas",
     imagen: "/images/unaslunares.png",
@@ -39,7 +39,7 @@ export const productos = [
     id: 5,
     nombre: "Uñas de gel con diseño artístico",
     descripcion:
-      "Uñas de gel con diseño artístico, que incluye preparación de uñas, aplicación de gel y decoración creativa según tus gustos.",
+      "Preparación de uñas. Aplicación de gel y decoración creativa según tus gustos.",
     precio: 10.0,
     categoria: "Uñas de gel",
     imagen: "/images/unascerezas.png",
@@ -50,7 +50,7 @@ export const productos = [
     id: 6,
     nombre: "Uñas de gel con diseño floral",
     descripcion:
-      "Uñas con diseño personalizados, utilizando tecnicas de artes",
+      "Preparación de uñas. Aplicación de gel. Decoración creativa con diseño floral según tus preferencias.",
     precio: 100,
     categoria: "Nail Art",
     imagen: "/images/unasazuleslunares.png",
@@ -59,7 +59,7 @@ export const productos = [
     id: 7,
     nombre: "Uñas en polygel con diseños",
     descripcion:
-      "Uñas en polygel con diseños personalizados, que incluye preparación de uñas, aplicación de polygel y decoración creativa según tus preferencias.",
+      "Preparación de uñas. Aplicación de polygel. Decoración creativa según tus preferencias.",
     precio: 90,
     categoria: "Polygel",
     imagen: "/images/unasblancas.png",
@@ -77,7 +77,7 @@ export const productos = [
     id: 9,
     nombre: "Uñas con diseño de flores y piedras",
     descripcion:
-      "Uñas con diseño de flores y piedras, que incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
+      "Preparación de uñas.Diseño de flores y piedras. Aplicación de esmalte y decoración creativa según tus preferencias.",
     precio: 120,
     categoria: "Jelly Nails",
     imagen: "/images/unasflorrosada.png",
@@ -86,36 +86,36 @@ export const productos = [
 
   {
     id: 10,
-    nombre: "Uñas matizadas con diseño minimalista",
+    nombre: "Uñas matizadas",
     descripcion:
-      "Uñas matizadas con diseño minimalista, que incluye preparación de uñas, aplicación de esmalte y acabado elegante.",
+      "Preparación de uñas. Aplicación de esmalte y acabado elegante.",
     precio: 90,
     categoria: "Polygel",
     imagen: "/images/unasrojasdorado.png",
   },
   {
     id: 11,
-    nombre: "Uñas lunares con diseños personalizados",    
+    nombre: "Uñas lunares TENDENCIA",    
     descripcion:
-      "Uñas lunares con diseños personalizados, que incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
+      "Incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
     precio: 90,
     categoria: "Uñas acrílicas",
     imagen: "/images/unaslunares.png",
   },
   {
     id: 12,
-    nombre: "Manicura semipermanente con diseño elegante",
+    nombre: "Manicura semipermanente ",
     descripcion:
-      "Manicura semipermanente con diseño elegante, que incluye preparación de uñas, aplicación de esmalte y acabado profesional.",
+      "Preparación de uñas, aplicación de esmalte y acabado profesional y natural.",
     precio: 50,
     categoria: "Manicura semipermanente",
     imagen: "/images/unasbasicas.png",
   },
   {
     id: 13,
-    nombre: "Uñas lunares con diseños personalizados",
+    nombre: "Uñas lunares-piedras-flores",
     descripcion:
-      "Uñas lunares con diseños personalizados, que incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
+      "Preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias hasta 4 colores a escoger.",
     precio: 90,
     categoria: "Uñas acrílicas",
     imagen: "/images/unaslunaresnegro.png",
@@ -124,62 +124,53 @@ export const productos = [
     id: 14,
     nombre: "Uñas con diseño frutales y piedras",
     descripcion:
-      "Uñas con diseño frutales y piedras, que incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
+      "Mas de 100 modelos de diseño. Preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
     precio: 120,
     categoria: "Jelly Nails",
     imagen: "/images/unascerezas.png",
   },
   {
     id: 15,
-    nombre: "Pedicura con diseños personalizados en tonos rojos",
+    nombre: "Pedicura con pedreria",
     descripcion:
-      "Pedicura con diseños personalizados en tonos rojos, que incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
+      "Pedicura con pedreria en tonos vibrantes. Preparación, limpieza y exfoliación de uñas y pies.Aplicación de esmalte y decoración creativa según tus preferencias.",
     precio: 70,
     categoria: "Pedicura",
     imagen: "/images/pedicurarojatigre.png",
   },
   {
     id: 16,
-    nombre: "Pedicura con diseños personalizados en tonos naranja ",
+    nombre: "Pedicura sencilla",
     descripcion:
-      "Pedicura con diseños personalizados en tonos naranja , que incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
+      "Preparación de uñas,limpieza,exfoliación de uñas y pies.Aplicación de suave capa de  esmalte y decoración sencilla.",
     precio: 70,
     categoria: "Pedicura",
     imagen: "/images/pedicuranaranja.png",
   },
    {
     id: 17,
-    nombre: "Pedicura con diseños personalizados en tonos naranja ",
+    nombre: "Pedicura con decoración floral y pedreria",
     descripcion:
-      "Pedicura con diseños personalizados en tonos naranja , que incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
-    precio: 70,
-    categoria: "Pedicura",
-    imagen: "/images/pedicuranaranja.png",
-  },
-   {
-    id: 18,
-    nombre: "Pedicura con diseños personalizados en tonos neutros",
-    descripcion:
-      "Pedicura con diseños personalizados en tonos neutros, que incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
+      "Preparación de uñas,limpieza,exfoliación de uñas y pies.Aplicación de suave capa de  esmalte, decoración floral y con pedreria",
     precio: 70,
     categoria: "Pedicura",
     imagen: "/images/pedicurablanca.png",
   },
    {
-    id: 19,
+    id: 18,
     nombre: "Pedicura con diseños personalizados en tonos pasteles ",
     descripcion:
-      "Pedicura con diseños personalizados en tonos pasteles , que incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
-    precio: 70,
+    "Preparación de uñas,limpieza,exfoliación de uñas y pies.Aplicación de suave capa de  esmalte en combinacion con mas de 20 tonos pasteles",
+    precio: 45,
     categoria: "Pedicura",
     imagen: "/images/pedicuraamarilla.png",
   },
    {
-    id: 20,
-    nombre: "Pedicura con diseños personalizados en tonos blancos ",
+    id: 19,
+    nombre: "Pedicura en tonos blancos",
     descripcion:
-      "Pedicura con diseños personalizados en tonos blancos , que incluye preparación de uñas, aplicación de esmalte y decoración creativa según tus preferencias.",
-    precio: 70,
+      "Preparación de uñas,limpieza,exfoliación de uñas y pies.Aplicación de suave capa de  esmalte y decoración floral o con pedreria",
+    precio:45,
     categoria: "Pedicura",
     imagen: "/images/pedicura1blanca.png",
   },

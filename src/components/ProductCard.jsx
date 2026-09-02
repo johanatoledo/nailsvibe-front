@@ -27,7 +27,7 @@ export default function ProductCard({
     <h3 className="mt-4 nails-title text-xl">
       {producto.nombre}
     </h3>
-
+   <span className="font-bold">INCLUYE:</span>
     <p className="mt-3 min-h-14 text-sm text-aline-justify leading-relaxed text-gray-600">
       {producto.descripcion}
     </p>

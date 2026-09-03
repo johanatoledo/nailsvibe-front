@@ -266,33 +266,32 @@ select {
   background: var(--color-nails-caramelo);
 }
 
-/* ===== ESTILOS CARRITO ===== */
-.nails-icon-cart{
+/* ===== ESTILOS CALENDARIO ===== */
+.nails-icon-calendar{
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   border-radius: 999px;
-  background: var(--color-pink-chic);
   padding: 0.45rem 0.9rem;
-  color: var(--color-black-chic);
+  color: var(--color-nails-caramelo);
 }
 
-.nails-button-cart {
+.nails-button-calendar {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 
   border-radius: 1rem;
 
-  background: var(--color-gold-chic);
+  background: var(--color-nails-gold);
 
   padding: 0.8rem 1rem;
 
   font-size: 0.82rem;
   font-weight: 900;
 
-  color: var(--color-black-chic);
+  color: var(--color-nails-white);
 
   transition:
     transform 0.25s ease,
@@ -300,10 +299,10 @@ select {
     box-shadow 0.25s ease;
 }
 
-.nails-button-cart:hover {
+.nails-button-calendar:hover {
   transform: translateY(-2px);
 
-  background: var(--color-caramelo-chic);
+  background: var(--color-nails-caramelo);
 
   box-shadow:
     0 12px 24px rgb(92 61 46 / 0.18);
@@ -413,9 +412,9 @@ select {
   width: 100%;
 
   border-radius: 1rem;
-  border: 1px solid #e5d7ca;
+  border: 2px solid var(--color-nails-gold);
 
-  background: var(--color-white-chic);
+  background: var(--color-nails-white);
 
   padding: 0.9rem 1rem;
 
@@ -425,7 +424,7 @@ select {
 }
 
 .nails-input:focus {
-  border-color: var(--color-caramelo-chic);
+  border-color: var(--color-nails-caramelo);
 
   box-shadow:
     0 0 0 4px rgb(201 123 54 / 0.10);
@@ -436,7 +435,7 @@ select {
 .nails-button-primary {
   border-radius: 1rem;
 
-  background: var(--color-caramelo-chic);
+  background: var(--color-nails-caramelo);
 
   padding: 0.95rem 1.4rem;
 
@@ -449,22 +448,22 @@ select {
 }
 
 .nails-button-primary:hover {
-  background: var(--color-gold-chic);
+  background: var(--color-nails-gold);
   transform: translateY(-2px);
 }
 
 .nails-button-secondary {
   border-radius: 1rem;
 
-  background: var(--color-white-chic);
+  background: var(--color-nails-white);
 
   padding: 0.9rem 1.2rem;
 
   font-weight: 800;
 
-  color: var(--color-black-chic);
+  color: var(--color-nails-black);
 
-  border: 1px solid #eadccf;
+  border: 1px solid var(--color-nails-caramelo);
 
   transition:
     background 0.25s ease,
@@ -472,6 +471,6 @@ select {
 }
 
 .nails-button-secondary:hover {
-  background: var(--color-white-chic);
-  border-color: var(--color-caramelo-chic);
+  background: var(--color-nails-white);
+  border-color: var(--color-nails-caramelo);
 }

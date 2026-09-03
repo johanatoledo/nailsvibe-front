@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Plus, Trash2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export default function ProductCard({
   producto,
@@ -58,7 +58,7 @@ export default function ProductCard({
           onClick={() => onEliminar(producto.id)}
           className="nails-button-remove"
         >
-          <Trash2 size={14} />
+          <ArrowLeft size={14} />
           Atras
         </button>
       ) : (
@@ -74,7 +74,7 @@ export default function ProductCard({
 
     {cantidad > 0 && (
       <p className="mt-4 text-sm font-black text-green-700">
-        Agendada cita para: (Cantidad: {cantidad}){producto.nombre} 
+        Seleccionaste: {cantidad}. {producto.nombre} 
       </p>
     )}
   </div>

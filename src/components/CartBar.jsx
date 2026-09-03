@@ -1,4 +1,4 @@
-import { ShoppingCart } from "lucide-react";
+import { CalendarPlus } from "lucide-react";
 
 export default function CartBar({ carrito, onOpenCheckout }) {
   const cantidadProductos = carrito.reduce((acc, item) => acc + item.cantidad, 0);
@@ -11,16 +11,16 @@ export default function CartBar({ carrito, onOpenCheckout }) {
   if (carrito.length === 0) return null;
 
   return (
-    <div className="fixed bottom-5 left-1/2 z-50 w-[92%] max-w-2xl -translate-x-1/2 rounded-3xl bg-white-chic p-5 shadow-2xl ring-1 ring-red-100">
+    <div className="fixed bottom-5 left-1/2 z-50 w-[92%] max-w-2xl -translate-x-1/2 rounded-3xl bg-nails-white/80 p-5 shadow-2xl ring-1 ring-red-100">
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="nails-icon-cart">
-            <ShoppingCart size={24} />
+          <div className="nails-icon-calendar">
+            <CalendarPlus size={40} />
           </div>
 
           <div>
-            <p className="text-sm font-bold text-gray-500">
-              {cantidadProductos} producto(s)
+            <p className="text-sm font-bold text-nails-brown">
+              {cantidadProductos} Servicio(s)
             </p>
             <p className="text-xl font-black text-gray-900">
               Total: S/ {total.toFixed(2)}
@@ -30,9 +30,9 @@ export default function CartBar({ carrito, onOpenCheckout }) {
 
         <button
           onClick={onOpenCheckout}
-          className="nails-button-cart"
+          className="nails-button-calendar"
         >
-          Pagar pedido
+          Reservar Cita
         </button>
       </div>
     </div>

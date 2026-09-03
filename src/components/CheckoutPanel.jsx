@@ -1,6 +1,6 @@
 "use client";
 
-import { X } from "lucide-react";
+import { X, Flower2, Sparkles, Flower, Sparkle } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { crearPedido } from "@/services/pedidoService";
@@ -16,7 +16,7 @@ export default function CheckoutPanel({
   const itemsPedido = Array.isArray(carrito) ? carrito : [];
 
   const [clienteNombre, setClienteNombre] = useState("");
-  const [tipoPedido, setTipoPedido] = useState("restaurante");
+  const [turnos, setturnos] = useState("manana");
   const [yapeOperacion, setYapeOperacion] = useState("");
   const [cargando, setCargando] = useState(false);
   const [nombreError, setNombreError] = useState("");
@@ -53,7 +53,7 @@ export default function CheckoutPanel({
 
       const data = {
         cliente_nombre: nombreLimpio,
-        tipo_pedido: tipoPedido,
+        turnos: turnos,
 
         productos: itemsPedido.map((item) => ({
           id: item.id,
@@ -87,12 +87,11 @@ export default function CheckoutPanel({
 
   return (
     <div className="fixed inset-0 z-[100] bg-black/50 px-4 py-6 backdrop-blur-sm">
-      <div className="mx-auto flex max-h-[90vh] max-w-xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl">
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b bg-pedido-white px-6 py-5">
-          <h2 className="text-2xl font-title bg-nails-brown">
+      <div className="mx-auto flex max-h-[90vh] max-w-xl flex-col overflow-hidden rounded-3xl bg-nails-brown/40 shadow-2xl">
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b bg-nails-brown px-6 py-5">
+          <h2 className="text-2xl text-center font-title font-bold text-nails-yellow">
             CONFIRMAR CITA
           </h2>
-
           <button
             onClick={onClose}
             className="rounded-full bg-nails-caramelo p-2 text-nails-white hover:bg-nails-gold hover:text-nails-white transition"
@@ -100,26 +99,23 @@ export default function CheckoutPanel({
             <X size={22} />
           </button>
         </div>
-
+        <span className="mt-2 text-s text-center font-black text-nails-white " >  Al confirmar el pago, tu cita quedará registrada!   </span>
+        
         <div className="flex-1 overflow-y-auto px-6 pb-6">
-          <div className="mt-6 overflow-hidden rounded-3xl bg-purple-900 p-6 shadow-lg ring-1 ring-purple-200">
+          <div className="mt-6 overflow-hidden rounded-3xl p-6 shadow-lg ">
             <div className="flex flex-col items-center gap-5 lg:flex-row lg:items-center lg:justify-between">
               <div className="text-center lg:text-left">
-                <span className="--font-body rounded-full bg-green-300 px-4 py-2 text-xs font-black uppercase tracking-wide text-pedido-white">
-                  Separa tu cupo con 20% de adelanto y paga el resto al llegar al local.
-                </span>
-
-                <p className="mt-4 text-xl font-black text-white">
+                
+                <p className="mt-4 text-xl font-title text-nails-yellow">
                   Escanea el QR
                 </p>
 
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-white">
-                  Realiza el pago desde tu aplicación Yape y coloca el ID de
-                  operación. Al confirmar el pago, tu cita quedará registrada y recibirás un mensaje de confirmación.
+                <p className="mt-3 max-w-md text-sm leading-relaxed text-nails-white">
+                Realiza el pago desde tu aplicación Yape o PLin y coloca el ID de operación.
                 </p>
 
                 <div className="mt-5">
-                  <p className="text-xl font-black uppercase tracking-wider text-nails-white">
+                  <p className="text-xl font-title uppercase tracking-wider text-nails-yellow">
                     Número
                   </p>
 
@@ -129,7 +125,7 @@ export default function CheckoutPanel({
                 </div>
               </div>
 
-              <div className="relative flex h-56 w-56 shrink-0 items-center justify-center overflow-hidden rounded-3xl bg-pedido-white p-2 shadow-2xl ring-1 ring-purple-200">
+              <div className="relative flex h-56 w-56 shrink-0  bg-nails-gold items-center justify-center overflow-hidden rounded-3xl bg-pedido-white p-2 shadow-2xl ring-1 ring-nails-gold">
                 <Image
                   src="/branding/yape-qr.webp"
                   alt="QR de Yape"
@@ -139,28 +135,30 @@ export default function CheckoutPanel({
                   priority
                 />
               </div>
+              
             </div>
           </div>
 
-          <div className="mt-6 max-h-56 space-y-3 overflow-y-auto rounded-2xl border border-gray-100 p-3">
+          <div className="mt-6 max-h-56 space-y-3 overflow-y-auto rounded-2xl  p-3">
             {itemsPedido.map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between rounded-2xl px-4 py-3 text-sm font-bold"
+                className="flex justify-between rounded-2xl px-4 py-3 text-xl font-bold"
               >
-                <span>
-                  {item.nombre} x{item.cantidad}
+                <Sparkles size={30} className="text-nails-yellow" />
+                <span className="text-nails-white">
+                  {item.nombre} 
                 </span>
 
-                <span className="text-red-700">
-                  S/ {(item.precio * item.cantidad).toFixed(2)}
+                <span className="text-nails-white">
+                  S/ {(item.precio * item.cantidad) * 0.20.toFixed(2)}
                 </span>
               </div>
             ))}
           </div>
 
           <div className="mt-6">
-            <label className="text-sm font-black text-pedido-gray">
+            <label className="text-l font-title text-nails-yellow">
               Nombre del cliente <span className="text-red-700">*</span>
             </label>
 
@@ -172,56 +170,56 @@ export default function CheckoutPanel({
                 if (nombreError) setNombreError("");
               }}
               placeholder="Ejemplo: María López"
-              className="mt-2 w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none cafe-input"
+              className="mt-2 w-full rounded-2xl border border-nails-white px-4 py-3 outline-none nails-input"
             />
 
             {nombreError && (
-              <div className="mt-2 text-xs font-bold text-red-700">
+              <div className="mt-2 text-xl font-bold text-red-700">
                 {nombreError}
               </div>
             )}
           </div>
 
           <div className="mt-5">
-            <label className="text-sm font-black text-pedido-gray">
-              ¿Dónde consumirás tu pedido? <span className="text-red-700">*</span>
+            <label className="text-l font-title text-nails-yellow">
+              ¿Para que turno desea agendar? <span className="text-red-700">*</span>
             </label>
 
             <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <button
                 type="button"
-                onClick={() => setTipoPedido("restaurante")}
+                onClick={() => setturnos("manana")}
                 className={`rounded-2xl border px-4 py-4 text-left font-black transition ${
-                  tipoPedido === "restaurante"
-                    ? "border-red-700 bg-red-50 text-red-700"
+                  turnos === "manana"
+                    ? "border-nails-caramelo bg-red-50 text-nails-caramelo"
                     : "border-gray-200 bg-white text-gray-700 hover:border-red-300"
                 }`}
               >
-                Comer en restaurante
+                Mañana
                 <span className="mt-1 block text-xs font-bold text-gray-500">
-                  El pedido se entrega en mesa.
+                  Horario matutino 8:00 am - 11:00 am
                 </span>
               </button>
 
               <button
                 type="button"
-                onClick={() => setTipoPedido("llevar")}
+                onClick={() => setturnos("tarde")}
                 className={`rounded-2xl border px-4 py-4 text-left font-black transition ${
-                  tipoPedido === "llevar"
-                    ? "border-red-700 bg-red-50 text-red-700"
+                  turnos === "tarde"
+                    ? "border-nails-caramelo bg-red-50 text-nails-caramelo"
                     : "border-gray-200 bg-white text-gray-700 hover:border-red-300"
                 }`}
               >
-                Para llevar
+                Tarde
                 <span className="mt-1 block text-xs font-bold text-gray-500">
-                  El pedido se recoge en mostrador.
+                  Horario tarde 1:00 pm - 7:00 pm
                 </span>
               </button>
             </div>
           </div>
 
           <div className="mt-5">
-            <label className="text-sm font-black cafe-subtitle">
+            <label className="text-l font-title text-nails-yellow">
               ID de operación Yape <span className="text-red-700">*</span>
             </label>
 
@@ -233,7 +231,7 @@ export default function CheckoutPanel({
                 if (yapeError) setYapeError("");
               }}
               placeholder="Ejemplo: 84592136"
-              className="mt-2 w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none focus:border-red-700"
+              className="mt-2 w-full rounded-2xl bg-nails-white border border-nails-gold px-4 py-3 outline-none focus:border-nails-caramelo"
             />
 
             {yapeError && (
@@ -244,16 +242,16 @@ export default function CheckoutPanel({
           </div>
         </div>
 
-        <div className="sticky bottom-0 border-t bg-white px-6 py-5">
+        <div className="sticky bottom-0 border-t bg-nails-brown px-6 py-5">
           <div className="flex items-center justify-between gap-4">
-            <p className="text-xl font-black text-gray-950">
+            <p className="text-xl font-black text-nails-yellow">
               Total: S/ {total.toFixed(2)}
             </p>
 
             <button
               onClick={confirmarPedido}
               disabled={cargando}
-              className="cafe-button-cart"
+              className="nails-button-remove"
             >
               {cargando ? "Enviando..." : "Confirmar"}
             </button>

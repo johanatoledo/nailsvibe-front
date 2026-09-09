@@ -1,5 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4002";   
-
+ 
 const headersJson = {
   "Content-Type": "application/json",
   "Bypass-Tunnel-Reminder": "true",
@@ -14,20 +14,20 @@ async function manejarRespuesta(response, mensajeError) {
   return response.json();
 }
 
-export async function crearPedido(data) {
-  const response = await fetch(`${API_URL}/api/pedidos`, {
+export async function crearCita(data) {
+  const response = await fetch(`${API_URL}/api/nuevacita`, {
     method: "POST",
     mode: 'cors',
     headers: headersJson,
     body: JSON.stringify(data),
   });
 
-  return manejarRespuesta(response, "No se pudo crear el pedido");
+  return manejarRespuesta(response, "No se pudo guardar la cita");
 }
 
-export async function obtenerPedido(id) {
+export async function obtenerCita(id) {
   const response = await fetch(
-    `${API_URL}/api/pedidos/${id}`,
+    `${API_URL}/api/cita/${id}`,
     {
       cache: "no-store",
     }
@@ -35,12 +35,12 @@ export async function obtenerPedido(id) {
 
   return manejarRespuesta(
     response,
-    "No se pudo obtener el pedido"
+    "No se pudo obtener los datos de la cita"
   );
 }
 
-export async function obtenerPedidosAdmin() {
-  const response = await fetch(`${API_URL}/api/pedidos`, {
+export async function obtenerCitasAdmin() {
+  const response = await fetch(`${API_URL}/api/cita`, {
     cache: "no-store",
   });
 
@@ -48,18 +48,18 @@ export async function obtenerPedidosAdmin() {
   return manejarRespuesta(response, "No se pudieron obtener los pedidos");
 }
 
-export async function marcarPedidoEntregado(id) {
-  const response = await fetch(`${API_URL}/api/pedidos/${id}/entregar`, {
+export async function marcarAsistenciaCita(id) {
+  const response = await fetch(`${API_URL}/api/cita/${id}/asistencia`, {
     method: "PATCH",
   });
 
   
-  return manejarRespuesta(response, "No se pudo marcar como entregado");
+  return manejarRespuesta(response, "No se pudo marcar su asistencia");
 }
 
-export async function confirmarPagoPedido(id) {
+export async function confirmarPagoReserva(id) {
   try{
-  const response = await fetch(`${API_URL}/api/pedidos/${id}/pago`, {
+  const response = await fetch(`${API_URL}/api/cita/${id}/pago`, {
     method: "PATCH",
     mode: "cors",
     headers: headersJson,

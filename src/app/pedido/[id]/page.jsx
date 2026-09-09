@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import TimerPedido from "@/components/TimerPedido";
-import { obtenerPedido } from "@/services/pedidoService";
+import { obtenerPedido } from "@/services/functionServices";
 import { CheckSquare, PackageCheck } from "lucide-react";
 
 export default function PedidoDetallePage() {

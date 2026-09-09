@@ -8,7 +8,7 @@ import {
   obtenerPedidosAdmin,
   confirmarPagoPedido,
   asignarUbicacionPedido,
-} from "@/services/pedidoService";
+} from "@/services/functionServices";
 
 
 export default function AdminPedidosPage() {

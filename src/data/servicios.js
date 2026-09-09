@@ -1,4 +1,4 @@
-export const productos = [
+export const servicios = [
   {
     id: 1,
     nombre: "Exfoliacion Pies",

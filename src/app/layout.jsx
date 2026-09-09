@@ -14,11 +14,16 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 export const metadata = {
   charset: "utf-8",
-  viewport: "width=device-width, initial-scale=1",  
   title: "Nails Vibe - Catálogo Digital",
   description: "Estética Profesional, Manicure & Nail Art",
+  icons: {
+    icon: "/branding/logonails.png",
+  },
 };
-
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${cormorantGaramond.variable} ${plusJakartaSans.variable}`}>

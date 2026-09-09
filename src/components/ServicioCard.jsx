@@ -1,21 +1,23 @@
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 
-export default function ProductCard({
-  producto,
+export default function ServicioCard({
+  servicio,
   cantidad = 0,
   onAgregar,
   onEliminar,
 }) {
+  if (!servicio) return null;
   const estaEnCarrito = cantidad > 0;
 
   return (
     <article className="group nails-product-card nails-fade-in">
   <div className="relative h-60 w-full overflow-hidden ">
     <Image
-      src={producto.imagen}
-      alt={producto.nombre}
+      src={servicio.imagen}
+      alt={servicio.nombre}
       fill
+      priority
       className="object-cover transition-transform duration-700 group-hover:scale-110"
       sizes="(max-width: 768px) 100vw,(max-width: 1200px) 50vw,50vw"
     />
@@ -25,11 +27,11 @@ export default function ProductCard({
 
   <div className="p-2">
     <h3 className="mt-4 nails-title text-xl">
-      {producto.nombre}
+      {servicio.nombre}
     </h3>
    <span className="font-bold">INCLUYE:</span>
     <p className="mt-3 min-h-14 text-sm text-aline-justify leading-relaxed text-gray-600">
-      {producto.descripcion}
+      {servicio.descripcion}
     </p>
 
     <div className="mt-2 flex items-center justify-between gap-3">
@@ -37,7 +39,7 @@ export default function ProductCard({
       <div className="flex items-center justify-between">
        <span className="text-xs font-bold">PRECIO TOTAL: 
         <p className="nails-product-price text-sm  opacity-80">
-           S/ {Number(producto.precio).toFixed(2)}
+           S/ {Number(servicio.precio).toFixed(2)}
           </p>
           </span>
         
@@ -47,7 +49,7 @@ export default function ProductCard({
       <div className="flex items-center justify-between font-semibold">
        <span className="text-xs text-nails-black">RESERVA (20%):
         <p className="text-base text-nails-brown font-bold">
-          S/ {(Number(producto.precio) * 0.20).toFixed(2)}
+          S/ {(Number(servicio.precio) * 0.20).toFixed(2)}
        </p>
        </span>
        
@@ -55,7 +57,7 @@ export default function ProductCard({
 
       {estaEnCarrito ? (
         <button
-          onClick={() => onEliminar(producto.id)}
+          onClick={() => onEliminar(servicio.id)}
           className="nails-button-remove"
         >
           <ArrowLeft size={14} />
@@ -63,7 +65,7 @@ export default function ProductCard({
         </button>
       ) : (
         <button
-          onClick={() => onAgregar(producto)}
+          onClick={() => onAgregar(servicio)}
           className="nails-button-add"
         >
           
@@ -74,7 +76,7 @@ export default function ProductCard({
 
     {cantidad > 0 && (
       <p className="mt-4 text-sm font-black text-green-700">
-        Seleccionaste: {cantidad}. {producto.nombre} 
+        Seleccionaste: {cantidad}. {servicio.nombre} 
       </p>
     )}
   </div>

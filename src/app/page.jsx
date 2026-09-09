@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
-import ProductCard from "@/components/ProductCard";
+import ServicioCard from "@/components/ServicioCard";
 import CartBar from "@/components/CartBar";
 import CheckoutPanel from "@/components/CheckoutPanel";
-import { productos } from "@/data/productos";
+import { servicios } from "@/data/servicios";
 
 export default function HomeMenuPage() {
   const [carrito, setCarrito] = useState([]);
@@ -20,20 +20,18 @@ export default function HomeMenuPage() {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-  }, [carrito]);
+ 
 
   const categorias = [
     "Todos",
-    ...new Set(productos.map((p) => p.categoria)),
+    ...new Set(servicios.map((p) => p.categoria)),
   ];
 
-  const productosFiltrados =
+  const serviciosFiltrados =
     categoriaActiva === "Todos"
-      ? productos
-      : productos.filter(
-          (producto) => producto.categoria === categoriaActiva
+      ? servicios
+      : servicios.filter(
+          (servicio) => servicio.categoria === categoriaActiva
         );
 
   const total = carrito.reduce(
@@ -41,27 +39,29 @@ export default function HomeMenuPage() {
     0
   );
 
-  const agregarProducto = (producto) => {
-    setCarrito((prev) => {
-      const existe = prev.find((item) => item.id === producto.id);
-
-      if (existe) {
-        return prev.map((item) =>
-          item.id === producto.id
-            ? { ...item, cantidad: item.cantidad + 1 }
+const agregarServicio = (servicio) => {
+  setCarrito((prev) => {
+    const existe = prev.find((item) => item.id === servicio.id);
+    const nuevoCarrito = existe
+      ? prev.map((item) =>
+          item.id === servicio.id
+            ? { ...item, cantidad: (item.cantidad || 1) + 1 }
             : item
-        );
-      }
+        )
+      : [...prev, { ...servicio, cantidad: 1 }];
 
-      return [...prev, { ...producto, cantidad: 1 }];
-    });
-  };
+    localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
+    return nuevoCarrito;
+  });
+};
 
-  const eliminarProducto = (id) => {
-    setCarrito((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
-  };
+const eliminarServicio = (id) => {
+  setCarrito((prev) => {
+    const nuevoCarrito = prev.filter((item) => item.id !== id);
+    localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
+    return nuevoCarrito;
+  });
+};
 
   const limpiarCarrito = () => {
     setCarrito([]);
@@ -70,7 +70,7 @@ export default function HomeMenuPage() {
 
   const obtenerCantidad = (id) => {
     const item = carrito.find(
-      (producto) => producto.id === id
+      (servicio) => servicio.id === id
     );
 
     return item ? item.cantidad : 0;
@@ -109,13 +109,13 @@ export default function HomeMenuPage() {
      </div>
 
         <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {productosFiltrados.map((producto) => (
-            <ProductCard
-              key={producto.id}
-              producto={producto}
-              cantidad={obtenerCantidad(producto.id)}
-              onAgregar={agregarProducto}
-              onEliminar={eliminarProducto}
+          {serviciosFiltrados.map((servicio) => (
+            < ServicioCard
+              key={servicio.id}
+              servicio={servicio}
+              cantidad={obtenerCantidad(servicio.id)}
+              onAgregar={agregarServicio}
+              onEliminar={eliminarServicio}
             />
           ))}
         </div>
@@ -135,7 +135,7 @@ export default function HomeMenuPage() {
           onClose={() =>
             setCheckoutAbierto(false)
           }
-          onPedidoCreado={limpiarCarrito}
+          onCitaCreada={limpiarCarrito}
         />
       )}
     </main>

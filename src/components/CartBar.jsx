@@ -1,7 +1,7 @@
 import { CalendarPlus } from "lucide-react";
 
 export default function CartBar({ carrito, onOpenCheckout }) {
-  const cantidadProductos = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+  const cantidadServicios = carrito.reduce((acc, item) => acc + item.cantidad, 0);
 
   const total = carrito.reduce(
     (acc, item) => acc + item.precio * item.cantidad,
@@ -20,7 +20,7 @@ export default function CartBar({ carrito, onOpenCheckout }) {
 
           <div>
             <p className="text-sm font-bold text-nails-brown">
-              {cantidadProductos} Servicio(s)
+              {cantidadServicios} Servicio(s)
             </p>
             <p className="text-xl font-black text-gray-900">
               Total: S/ {total.toFixed(2)}

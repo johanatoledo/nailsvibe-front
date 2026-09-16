@@ -11,7 +11,7 @@ export default function ServicioCard({
   const estaEnCarrito = cantidad > 0;
 
   return (
-    <article className="group nails-product-card nails-fade-in">
+    <article className="group relative flex w-[78vw] max-w-70 shrink-0 snap-start flex-col nails-product-card nails-fade-in select-none sm:w-full sm:max-w-none sm:shrink">
   <div className="relative h-60 w-full overflow-hidden ">
     <Image
       src={servicio.imagen}

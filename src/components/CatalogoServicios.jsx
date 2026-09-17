@@ -26,7 +26,9 @@ export default function CatalogoServicios({ servicios = [] }) {
   const categorias = useMemo(
     () => [
       "Todos",
-      ...new Set(servicios.map((servicio) => servicio.categoria)),
+      ...new Set(
+        servicios.map((servicio) => servicio.categoria)
+      ),
     ],
     [servicios]
   );
@@ -37,7 +39,8 @@ export default function CatalogoServicios({ servicios = [] }) {
     }
 
     return servicios.filter(
-      (servicio) => servicio.categoria === categoriaActiva
+      (servicio) =>
+        servicio.categoria === categoriaActiva
     );
   }, [categoriaActiva, servicios]);
 
@@ -45,7 +48,9 @@ export default function CatalogoServicios({ servicios = [] }) {
     () =>
       carrito.reduce(
         (acc, item) =>
-          acc + Number(item.precio) * item.cantidad,
+          acc +
+          Number(item.precio) *
+            Number(item.cantidad || 1),
         0
       ),
     [carrito]
@@ -70,7 +75,7 @@ export default function CatalogoServicios({ servicios = [] }) {
           item.id === servicio.id
             ? {
                 ...item,
-                cantidad: item.cantidad + 1,
+                cantidad: (item.cantidad || 1) + 1,
               }
             : item
         )
@@ -101,51 +106,51 @@ export default function CatalogoServicios({ servicios = [] }) {
 
   const obtenerCantidad = (id) => {
     return (
-      carrito.find((item) => item.id === id)?.cantidad ?? 0
+      carrito.find((item) => item.id === id)
+        ?.cantidad ?? 0
     );
   };
 
   return (
     <>
-      {/* FILTROS DE CATEGORÍAS */}
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
-        {categorias.map((categoria) => {
-          const activa =
-            categoriaActiva === categoria;
+      {/* FILTROS */}
+     <div className="mt-6 flex flex-wrap justify-center gap-2 px-2 sm:mt-8 sm:gap-3 sm:px-0">
+      {categorias.map((categoria) => {
+        const activa = categoriaActiva === categoria;
 
-          return (
-            <button
-              key={categoria}
-              type="button"
-              onClick={() =>
-                setCategoriaActiva(categoria)
-              }
-              className={`nails-category-button ${
-                activa
-                  ? "nails-category-button-active"
-                  : "nails-category-button-inactive"
-              }`}
-            >
-              {categoria}
-            </button>
-          );
-        })}
-      </div>
+        return (
+         <button
+           key={categoria}
+           type="button"
+           onClick={() => setCategoriaActiva(categoria)}
+           className={`nails-category-button ${
+            activa
+            ? "nails-category-button-active"
+            : "nails-category-button-inactive"
+           }`}
+          >
+          {categoria}
+       </button>
+        );
+     })}
+    </div>
 
-      {/* GRID DE SERVICIOS */}
-      <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {/* CONTENEDOR DE TARJETAS  */}
+      <div className="  mt-10 -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto  overscroll-x-contain px-4  pb-5 sm:mx-0  sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 xl:grid-cols-4 " >
         {serviciosFiltrados.map((servicio) => (
           <ServicioCard
             key={servicio.id}
             servicio={servicio}
-            cantidad={obtenerCantidad(servicio.id)}
+            cantidad={obtenerCantidad(
+              servicio.id
+            )}
             onAgregar={agregarServicio}
             onEliminar={eliminarServicio}
           />
         ))}
       </div>
 
-      {/* AQUÍ VA CARTBAR */}
+      {/* CARRITO */}
       <CartBar
         carrito={carrito}
         onOpenCheckout={() =>
@@ -153,7 +158,7 @@ export default function CatalogoServicios({ servicios = [] }) {
         }
       />
 
-      {/* AQUÍ VA CHECKOUTPANEL */}
+      {/* CHECKOUT */}
       {checkoutAbierto && (
         <CheckoutPanel
           carrito={carrito}

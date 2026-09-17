@@ -92,48 +92,108 @@ select {
 }
 /* ===== ESTILOS PARA BOTONES DE LAS CATEGORIAS ===== */
 .nails-category-button-container {
-  color:var(--color-nails-brown);
+  color: var(--color-nails-brown);
   background-color: var(--color-nails-champagne);
-  opacity: 0.75;
   border-color: var(--color-nails-brown);
-  
-  
 }
 
 .nails-category-button {
-  border-radius: 999px;
-  padding: 0.65rem 1.25rem;
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.18em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 36px;
+
+  border: 1px solid transparent;
+  border-radius: 9999px;
+
+  padding: 0.5rem 0.85rem;
+
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease;
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .nails-category-button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+}
+
+.nails-category-button:focus-visible {
+  outline: 2px solid var(--color-nails-brown);
+  outline-offset: 3px;
 }
 
 .nails-category-button-active {
-  background: var(--color-nails-brown);
-  color: white;
-  box-shadow: 0 12px 24px rgb(0 0 0 / 0.10);
+  background-color: var(--color-nails-brown);
+  border-color: var(--color-nails-brown);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 6px 18px rgb(0 0 0 / 0.12);
 }
 
 .nails-category-button-inactive {
-  background: #fffaf5;
+  background-color: #fffaf5;
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--color-nails-brown) 20%,
+      transparent
+    );
+
   color: var(--color-nails-brown);
-  
+
+  box-shadow:
+    0 2px 8px rgb(0 0 0 / 0.04);
 }
 
 .nails-category-button-inactive:hover {
-  background: var(--color-nails-brown);
-  color: var(--color-nails-yellow);
-  box-shadow: 0 8px 18px rgb(0 0 0 / 0.07);
+  background-color: var(--color-nails-brown);
+  border-color: var(--color-nails-brown);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 6px 16px rgb(0 0 0 / 0.10);
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .nails-category-button {
+    min-height: 38px;
+
+    padding: 0.6rem 1rem;
+
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .nails-category-button {
+    min-height: 40px;
+
+    padding: 0.65rem 1.2rem;
+
+    font-size: 0.72rem;
+  }
 }
 /* ===== SCROLLBAR ===== */
 

@@ -76,7 +76,7 @@ export const servicios = [
       "Uñas con efecto cromo, que incluye preparación de uñas, aplicación de esmalte y acabado brillante y reflectante.",
     precio: 120,
     duracionMinutos: 100,
-    categoria: "Uñas efecto cromo",
+    categoria: "Encapsuladas",
     imagen: "/images/unasmetalizadas.png",
   },
   {

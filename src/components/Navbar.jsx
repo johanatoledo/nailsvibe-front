@@ -1,17 +1,42 @@
+"use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 
 
 export default function Navbar() {
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const whatsappNumber = "51932297805"; 
   const defaultMessage = encodeURIComponent(
     "¡Hola! Me gustaría obtener información sobre los servicios de Nails Vibe."
   );
-  
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${defaultMessage}`;
+   useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setShowNavbar(false);
+      } else {
+        
+        setShowNavbar(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  
   return (
-    <header className="sticky top-0 z-30   bg-nails-champagne/80 backdrop-blur-md">
+      <header className={`relative  w-full z-10  bg-nails-champagne/70 backdrop-blur-md transition-transform duration-400 ease-in-out ${
+        showNavbar ? "translate-y-0" : "-translate-y-full"
+      }`}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
         <Link href="/" >
           <Image

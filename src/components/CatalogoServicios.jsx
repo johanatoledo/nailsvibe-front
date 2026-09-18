@@ -137,15 +137,14 @@ export default function CatalogoServicios({ servicios = [] }) {
 
       {/* CONTENEDOR DE TARJETAS  */}
       <div className="  mt-10 -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto  overscroll-x-contain px-4  pb-5 sm:mx-0  sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 xl:grid-cols-4 " >
-        {serviciosFiltrados.map((servicio) => (
+        {serviciosFiltrados.map((servicio, index) => (
           <ServicioCard
             key={servicio.id}
             servicio={servicio}
-            cantidad={obtenerCantidad(
-              servicio.id
-            )}
+            cantidad={obtenerCantidad( servicio.id )}
             onAgregar={agregarServicio}
             onEliminar={eliminarServicio}
+            prioridad={index === 0}
           />
         ))}
       </div>

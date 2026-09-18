@@ -1,85 +1,176 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4002";   
- 
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:4003";
+
+const CITAS_URL = `${API_URL}/api/citas`;
+
 const headersJson = {
   "Content-Type": "application/json",
   "Bypass-Tunnel-Reminder": "true",
 };
 
-async function manejarRespuesta(response, mensajeError) {
+/* ============================================================
+   MANEJAR RESPUESTAS DE LA API
+============================================================ */
+
+async function manejarRespuesta(
+  response,
+  mensajeError
+) {
+  const data = await response
+    .json()
+    .catch(() => null);
+
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.message || mensajeError);
+    throw new Error(
+      data?.message ||
+        mensajeError ||
+        "Error en la solicitud"
+    );
   }
 
-  return response.json();
+  return data;
 }
+
+/* ============================================================
+   CREAR CITA
+
+   POST /api/citas
+============================================================ */
 
 export async function crearCita(data) {
-  const response = await fetch(`${API_URL}/api/nuevacita`, {
-    method: "POST",
-    mode: 'cors',
-    headers: headersJson,
-    body: JSON.stringify(data),
-  });
+  const response = await fetch( CITAS_URL, {
+      method: "POST",
+      mode: "cors",
+      headers: headersJson,
+      body: JSON.stringify(data),
+    }
+  );
 
-  return manejarRespuesta(response, "No se pudo guardar la cita");
+  return manejarRespuesta(
+    response,
+    "No se pudo registrar la cita"
+  );
 }
 
-export async function obtenerCita(id) {
-  const response = await fetch(
-    `${API_URL}/api/cita/${id}`,
-    {
+/* ============================================================
+   OBTENER TODAS LAS CITAS
+
+   GET /api/citas
+============================================================ */
+
+export async function obtenerCitasAdmin() {
+  const response = await fetch( CITAS_URL,{
+      method: "GET",
       cache: "no-store",
     }
   );
 
   return manejarRespuesta(
     response,
-    "No se pudo obtener los datos de la cita"
+    "No se pudieron obtener las citas"
   );
 }
 
-export async function obtenerCitasAdmin() {
-  const response = await fetch(`${API_URL}/api/cita`, {
-    cache: "no-store",
-  });
+/* ============================================================
+   OBTENER CITA POR ID
 
-  
-  return manejarRespuesta(response, "No se pudieron obtener los pedidos");
-}
+   GET /api/citas/:id
+============================================================ */
 
-export async function marcarAsistenciaCita(id) {
-  const response = await fetch(`${API_URL}/api/cita/${id}/asistencia`, {
-    method: "PATCH",
-  });
-
-  
-  return manejarRespuesta(response, "No se pudo marcar su asistencia");
-}
-
-export async function confirmarPagoReserva(id) {
-  try{
-  const response = await fetch(`${API_URL}/api/cita/${id}/pago`, {
-    method: "PATCH",
-    mode: "cors",
-    headers: headersJson,
-    });
- const data = await manejarRespuesta(response, "No se pudo confirmar el pago");
-
-    return data;
-  } catch (error) {
-    console.error("Error al confirmar pago:", error);
-    throw error;
+export async function obtenerCita(id) {
+  if (!id) {
+    throw new Error(
+      "El ID de la cita es obligatorio"
+    );
   }
-}
-export async function asignarUbicacionPedido(id, ubicacion) {
-  const response = await fetch(`${API_URL}/api/pedidos/${id}/ubicacion`, {
-    method: "PATCH",
-    mode: "cors",
-    headers: headersJson,
-    body: JSON.stringify({ ubicacion }),
-  });
 
-  return manejarRespuesta(response, "No se pudo asignar la ubicación");
+  const response = await fetch( `${CITAS_URL}/${id}`, {
+      method: "GET",
+      cache: "no-store",
+    }
+  );
+
+  return manejarRespuesta(
+    response,
+    "No se pudieron obtener los datos de la cita"
+  );
 }
 
+/* ============================================================
+   CONFIRMAR PAGO DE RESERVA
+
+   PATCH /api/citas/:id/pago
+============================================================ */
+
+export async function confirmarPagoReserva( id ) {
+  if (!id) {
+    throw new Error(
+      "El ID de la cita es obligatorio"
+    );
+  }
+
+  const response = await fetch( `${CITAS_URL}/${id}/pago`, {
+      method: "PATCH",
+      mode: "cors",
+      headers: headersJson,
+    }
+  );
+
+  return manejarRespuesta(
+    response,
+    "No se pudo confirmar el pago de la reserva"
+  );
+}
+
+/* ============================================================
+   MARCAR CITA COMO ATENDIDA
+
+   PATCH /api/citas/:id/atender
+============================================================ */
+
+export async function marcarAsistenciaCita( id ) {
+  if (!id) {
+    throw new Error(
+      "El ID de la cita es obligatorio"
+    );
+  }
+
+  const response = await fetch( `${CITAS_URL}/${id}/atender`, {
+      method: "PATCH",
+      mode: "cors",
+      headers: headersJson,
+    }
+  );
+
+  return manejarRespuesta(
+    response,
+    "No se pudo marcar la cita como atendida"
+  );
+}
+
+/* ============================================================
+   CANCELAR CITA
+
+   PATCH /api/citas/:id/cancelar
+============================================================ */
+
+export async function cancelarCita(id) {
+  if (!id) {
+    throw new Error(
+      "El ID de la cita es obligatorio"
+    );
+  }
+
+  const response = await fetch( `${CITAS_URL}/${id}/cancelar`, {
+      method: "PATCH",
+      mode: "cors",
+      headers: headersJson,
+    }
+  );
+
+  return manejarRespuesta(
+    response,
+    "No se pudo cancelar la cita"
+  );
+}

@@ -8,6 +8,7 @@ export default function ServicioCard({
   cantidad = 0,
   onAgregar,
   onEliminar,
+  prioridad = false,
 }) {
   if (!servicio) return null;
 
@@ -25,13 +26,9 @@ export default function ServicioCard({
           src={servicio.imagen}
           alt={servicio.nombre}
           fill
+          loading={prioridad ? "eager" : "lazy"}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="
-            (max-width: 639px) 78vw,
-            (max-width: 1023px) 50vw,
-            (max-width: 1279px) 33vw,
-            25vw
-          "
+          sizes="(max-width: 639px) 78vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw "
         />
 
         <div className="absolute inset-0 bg-lineal-to-t from-black/25 via-transparent to-transparent" />

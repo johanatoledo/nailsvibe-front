@@ -50,7 +50,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-4 text-sm ">
 
-          <Link href="/admin/pedidos"   className="--font-title font-bold text-nails-brown transition ">
+          <Link href="/admin/citas"   className="--font-title font-bold text-nails-brown transition ">
             Contactame!
           </Link>
           {/* Botón de WhatsApp */}

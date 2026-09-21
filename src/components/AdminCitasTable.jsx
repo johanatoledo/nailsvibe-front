@@ -274,7 +274,7 @@ export default function AdminCitasTable({
           onClick={() =>
             handleConfirmarPago(cita.id)
           }
-          className="w-full rounded-xl bg-nails-brown px-3 py-2 text-xs font-black text-white shadow-sm transition disabled:opacity-50"
+          className="w-full rounded-xl bg-nails-brown px-3 py-2 text-xs font-black text-white shadow-sm transition disabled:opacity-50 hover:text-nails-yellow"
         >
           {estaProcesando
             ? "Verificando..."

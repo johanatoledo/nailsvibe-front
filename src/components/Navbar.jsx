@@ -44,7 +44,7 @@ export default function Navbar() {
              alt="Nails Vibe"
              width={200}
              height={200}
-             className="object-contain rounded-full "
+             className="h-14 w-14 object-contain rounded-full sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-30 lg:w-30 "
           />
         </Link>
 

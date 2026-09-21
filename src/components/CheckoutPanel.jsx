@@ -205,7 +205,7 @@ export default function CheckoutPanel({
         onCitaCreada();
       }
 
-      router.push( `/servicio/${idRegistrado}` );
+      router.push( `/cita/${idRegistrado}` );
     } catch (error) {
       console.error(
         "Error al registrar la cita:",

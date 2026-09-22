@@ -548,7 +548,7 @@ export default function CitaDetallePage() {
 
             <div className="rounded-2xl bg-nails-brown/10 p-4 text-center">
             { pagoVerificado?
-            <p className="text-xs font-bold leading-relaxed text-nails-brown">
+            <p className="text-xl font-bold leading-relaxed text-nails-brown">
                 Te esperamos!
               </p>
             :

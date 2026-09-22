@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { obtenerCita } from "@/services/functionServices";
 import { CalendarCheck, CheckCircle2, Clock, CreditCard, Phone, Sparkles, User, } from "lucide-react";
-import { formatearFecha } from "@/utils/dateUtils"
+import { formatearFecha, formatearHora } from "@/utils/dateUtils"
 /* ============================================================
    HELPERS
 ============================================================ */
@@ -417,7 +417,7 @@ export default function CitaDetallePage() {
                     </p>
 
                     <p className="font-black text-gray-900">
-                      {cita.hora_cita ||
+                      {formatearHora(cita.hora_cita) ||
                         "Por confirmar"}
                     </p>
                   </div>

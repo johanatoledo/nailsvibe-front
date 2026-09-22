@@ -417,6 +417,24 @@ const totalAtendidas =
             Confirmadas (
             {totalConfirmadas})
           </button>
+
+           <button
+            type="button"
+            onClick={() =>
+              setFiltroEstado(
+                "atendidas"
+              )
+            }
+            className={`rounded-xl px-3 py-2 text-xs font-black transition sm:px-4 sm:text-sm ${
+              filtroEstado ===
+              "atendidas"
+                ? "bg-green-700 text-white"
+                : "border bg-white text-green-700 hover:bg-green-50"
+            }`}
+          >
+            Atendidas (
+            {totalAtendidas})
+          </button>
         </div>
 
         {citasFiltradas.length === 0 ? (

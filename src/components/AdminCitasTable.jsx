@@ -14,6 +14,24 @@ function normalizarBooleano(valor) {
     valor === "1"
   );
 }
+function normalizarEstadoCita(estado) {
+  return String(estado || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function esCitaAtendida(estado) {
+  const estadoNormalizado =
+    normalizarEstadoCita(estado);
+
+  return [
+    "atendido",
+    "atendida",
+    "asistio",
+  ].includes(estadoNormalizado);
+}
 
 function obtenerServicios(servicio) {
   try {
@@ -78,18 +96,14 @@ function EstadoBadge({
     return (
       <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-black uppercase text-amber-800">
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber-500" />
+
         Pendiente
       </span>
     );
   }
 
-  const estadoNormalizado =
-    estado?.toLowerCase();
-
   const atendida =
-    estadoNormalizado === "atendido" ||
-    estadoNormalizado === "atendida" ||
-    estadoNormalizado === "asistió";
+    esCitaAtendida(estado);
 
   return (
     <span
@@ -196,46 +210,66 @@ export default function AdminCitasTable({
   };
 
   /* =======================================================
-     FILTROS
-  ======================================================= */
+   FILTROS
+======================================================= */
 
-  const citasFiltradas = citas.filter(
-    (cita) => {
-      const pagoVerificado =
-        normalizarBooleano(
-          cita.pago_verificado
+const citasFiltradas = citas.filter(
+  (cita) => {
+    const pagoVerificado =
+      normalizarBooleano(
+        cita.pago_verificado
+      );
+
+    const atendida =
+      esCitaAtendida(
+        cita.estado
+      );
+
+    switch (filtroEstado) {
+      case "pendientes":
+        return !pagoVerificado;
+
+      case "confirmadas":
+        return (
+          pagoVerificado &&
+          !atendida
         );
 
-      if (
-        filtroEstado === "pendientes"
-      ) {
-        return !pagoVerificado;
-      }
+      case "atendidas":
+        return atendida;
 
-      if (
-        filtroEstado === "confirmadas"
-      ) {
-        return pagoVerificado;
-      }
-
-      return true;
+      default:
+        return true;
     }
-  );
+  }
+);
 
-  const totalPendientes = citas.filter(
+const totalPendientes =
+  citas.filter(
     (cita) =>
       !normalizarBooleano(
         cita.pago_verificado
       )
   ).length;
 
-  const totalConfirmadas = citas.filter(
+const totalConfirmadas =
+  citas.filter(
     (cita) =>
       normalizarBooleano(
         cita.pago_verificado
+      ) &&
+      !esCitaAtendida(
+        cita.estado
       )
   ).length;
 
+const totalAtendidas =
+  citas.filter(
+    (cita) =>
+      esCitaAtendida(
+        cita.estado
+      )
+  ).length;
   /* =======================================================
      SIN CITAS
   ======================================================= */
@@ -260,10 +294,17 @@ export default function AdminCitasTable({
      ACCIÓN
   ======================================================= */
 
-  const renderAccion = ( cita, pagoVerificado ) => {
-  const estaProcesando = cargandoId === cita.id;
-  const estadoNormalizado = cita.estado?.toLowerCase();
-  const estaAtendida = estadoNormalizado === "atendido" || estadoNormalizado === "atendida" || estadoNormalizado === "asistió";
+ const renderAccion = (
+  cita,
+  pagoVerificado
+) => {
+  const estaProcesando =
+    cargandoId === cita.id;
+
+  const estaAtendida =
+    esCitaAtendida(
+      cita.estado
+    );
 
   // Pago pendiente
   if (!pagoVerificado) {
@@ -274,7 +315,7 @@ export default function AdminCitasTable({
         onClick={() =>
           handleConfirmarPago(cita.id)
         }
-        className="w-full rounded-xl bg-nails-brown px-3 py-2 text-xs font-black text-white shadow-sm transition hover:text-nails-yellow disabled:opacity-50"
+        className="w-full rounded-xl bg-nails-brown px-3 py-2 text-xs font-black text-white shadow-sm transition hover:text-nails-yellow disabled:cursor-not-allowed disabled:opacity-50"
       >
         {estaProcesando
           ? "Verificando..."
@@ -283,26 +324,33 @@ export default function AdminCitasTable({
     );
   }
 
-  // Ya atendida
+  // Cita finalizada
   if (estaAtendida) {
     return (
       <div className="flex w-full items-center justify-center">
-        <span className="inline-flex items-center rounded-xl bg-green-100 px-3 py-2 text-xs font-black text-green-700">
+        <span className="inline-flex items-center gap-1.5 rounded-xl bg-green-100 px-3 py-2 text-xs font-black text-green-700">
+          <CheckCircle2
+            size={14}
+            aria-hidden="true"
+          />
+
           Atendida
         </span>
       </div>
     );
   }
 
-  // Pago confirmado pero todavía no atendida
+  // Pago confirmado, esperando atención
   return (
     <button
       type="button"
       disabled={estaProcesando}
       onClick={() =>
-        handleMarcarAsistencia(cita.id)
+        handleMarcarAsistencia(
+          cita.id
+        )
       }
-      className="w-full rounded-xl bg-green-700 px-3 py-2 text-xs font-black text-white shadow-sm transition hover:bg-green-800 disabled:opacity-50"
+      className="w-full rounded-xl bg-green-700 px-3 py-2 text-xs font-black text-white shadow-sm transition hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-50"
     >
       {estaProcesando
         ? "Procesando..."

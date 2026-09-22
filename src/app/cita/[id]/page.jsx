@@ -269,7 +269,7 @@ export default function CitaDetallePage() {
                  Reserva registrada
                </p>
 
-               <h1 className="mt-2 text-xl font-black sm:text-2xl">
+               <h1 className="mt-2 text-xl  sm:text-2xl">
                 Tu cita ha sido registrada correctamente!
                </h1>
 
@@ -318,8 +318,8 @@ export default function CitaDetallePage() {
                     }`}
                   >
                     {pagoVerificado
-                      ? "Pago confirmado"
-                      : "Pago pendiente de verificación"}
+                      ? "Reserva Registrada"
+                      : "Por confirmar"}
                   </p>
                 </div>
 
@@ -559,9 +559,15 @@ export default function CitaDetallePage() {
             ================================================== */}
 
             <div className="rounded-2xl bg-nails-brown/10 p-4 text-center">
-              <p className="text-xs font-semibold leading-relaxed text-nails-brown">
+            { pagoVerificado?
+            <p className="text-xs font-semibold leading-relaxed text-nails-brown">
+                Te esperamos!
+              </p>
+            :
+            <p className="text-xs font-semibold leading-relaxed text-nails-brown">
                 Conserva esta página para  consultar el estado de tu reserva.
               </p>
+            }
             </div>
           </div>
         </div>

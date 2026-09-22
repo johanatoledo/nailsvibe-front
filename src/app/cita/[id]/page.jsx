@@ -2,11 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-
 import Navbar from "@/components/Navbar";
-
 import { obtenerCita } from "@/services/functionServices";
-
 import { CalendarCheck, CheckCircle2, Clock, CreditCard, Phone, Sparkles, User, } from "lucide-react";
 
 /* ============================================================
@@ -40,6 +37,17 @@ function formatearMetodoPago(metodo) {
 
   return metodos[metodo] || metodo || "No indicado";
 }
+
+const formatearFecha = (fecha) => {
+  if (!fecha) return "";
+
+  return new Intl.DateTimeFormat("es-PE", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    timeZone: "America/Lima",
+  }).format(new Date(fecha));
+};
 
 /* ============================================================
    PÁGINA DETALLE DE CITA
@@ -245,27 +253,48 @@ export default function CitaDetallePage() {
               CABECERA
           ================================================== */}
 
-          <div className="bg-nails-brown px-5 py-7 text-center text-white sm:px-8">
-            <CalendarCheck
-              size={56}
-              className="mx-auto mb-3"
-            />
+             <div className={`px-5 py-7 text-center text-white sm:px-8 ${pagoVerificado ?
+             "bg-nails-brown"
+             : "bg-nails-caramelo"
+              }`}
+              >
+             <CalendarCheck
+               size={56}
+               className="mx-auto mb-3"
+               />
 
-            <p className="text-xs font-black uppercase tracking-widest opacity-80">
-              Reserva registrada
-            </p>
+              {cita?.pago_confirmado ? (
+              <>
+               <p className="text-xs font-black uppercase tracking-widest opacity-80">
+                 Reserva registrada
+               </p>
 
-            <h1 className="mt-2 text-xl font-black sm:text-2xl">
-              Tu cita ha sido registrada correctamente
-            </h1>
+               <h1 className="mt-2 text-xl font-black sm:text-2xl">
+                Tu cita ha sido registrada correctamente
+               </h1>
 
-            <p className="mt-2 text-sm font-semibold opacity-90">
-              Cita #{cita.id}
-            </p>
-          </div>
+               <p className="mt-2 text-sm font-semibold opacity-90">
+                 Cita #{cita.id}
+               </p>
+               </>
+             ) : (
+               <>
+              <p className="text-xs font-black uppercase tracking-widest opacity-80">
+                Pago pendiente
+              </p>
 
-          <div className="space-y-6 p-4 sm:p-6 md:p-8">
+               <h1 className="mt-2 text-xl font-black sm:text-2xl">
+                 Estamos verificando tu pago
+               </h1>
 
+               <p className="mt-2 text-sm font-semibold opacity-90">
+                La reserva será confirmada cuando validemos el pago
+               </p>
+               </>
+              )}
+            </div>
+
+           <div className="space-y-6 p-4 sm:p-6 md:p-8">
             {/* ==================================================
                 ESTADO
             ================================================== */}
@@ -384,7 +413,7 @@ export default function CitaDetallePage() {
                     </p>
 
                     <p className="font-black text-gray-900">
-                      {cita.fecha_cita ||
+                      {formatearFecha(cita.fecha_cita) ||
                         "Por confirmar"}
                     </p>
                   </div>

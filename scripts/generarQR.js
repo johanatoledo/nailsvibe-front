@@ -1,11 +1,11 @@
 import QRCode from "qrcode";
 import path from "path";
 
-const urlMenu = "https://cafe-express.tonav-tech.online";
+const urlCatalogo= "https://nails-vibe.toledanadev.com";
 
-const outputPath = path.join(process.cwd(), "public", "qr-menu.png");
+const outputPath = path.join(process.cwd(), "public", "qr-catalogo.png");
 
-QRCode.toFile(outputPath, urlMenu, {
+QRCode.toFile(outputPath, urlCatalogo, {
   width: 1000,
   margin: 2,
   color: {

@@ -37,6 +37,16 @@ function formatearMetodoPago(metodo) {
   return metodos[metodo] || metodo;
 }
 
+const formatearFecha = (fecha) => {
+  if (!fecha) return "";
+
+  return new Intl.DateTimeFormat("es-PE", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    timeZone: "America/Lima",
+  }).format(new Date(fecha));
+};
 /* =========================================================
    BADGE PAGO
 ========================================================= */
@@ -449,7 +459,7 @@ export default function AdminCitasTable({
                                 size={13}
                               />
 
-                              {cita.fecha_cita || "Por acordar"}
+                              {formatearFecha(cita.fecha_cita) || "Por acordar"}
                             </p>
                           </div>
 

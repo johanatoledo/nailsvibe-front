@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, Calendar, CheckCircle2, Clock, CreditCard, Phone, Sparkles, User, } from "lucide-react";
-import { formatearFecha } from "@/utils/dateUtils"
+import { formatearFecha } from "@/src/utils/dateUtils"
 /* =========================================================
    HELPERS
 ========================================================= */

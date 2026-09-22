@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, Calendar, CheckCircle2, Clock, CreditCard, Phone, Sparkles, User, } from "lucide-react";
-import { formatearFecha } from "@/utils/dateUtils"
+import { formatearFecha, formatearHora } from "@/utils/dateUtils"
 /* =========================================================
    HELPERS
 ========================================================= */
@@ -260,45 +260,56 @@ export default function AdminCitasTable({
      ACCIÓN
   ======================================================= */
 
-  const renderAccion = (
-    cita,
-    pagoVerificado
-  ) => {
-    const estaProcesando =
-      cargandoId === cita.id;
+  const renderAccion = ( cita, pagoVerificado ) => {
+  const estaProcesando = cargandoId === cita.id;
+  const estadoNormalizado = cita.estado?.toLowerCase();
+  const estaAtendida = estadoNormalizado === "atendido" || estadoNormalizado === "atendida" || estadoNormalizado === "asistió";
 
-    if (!pagoVerificado) {
-      return (
-        <button
-          type="button"
-          disabled={estaProcesando}
-          onClick={() =>
-            handleConfirmarPago(cita.id)
-          }
-          className="w-full rounded-xl bg-nails-brown px-3 py-2 text-xs font-black text-white shadow-sm transition disabled:opacity-50 hover:text-nails-yellow"
-        >
-          {estaProcesando
-            ? "Verificando..."
-            : "Confirmar pago"}
-        </button>
-      );
-    }
-
+  // Pago pendiente
+  if (!pagoVerificado) {
     return (
       <button
         type="button"
         disabled={estaProcesando}
         onClick={() =>
-          handleMarcarAsistencia(cita.id)
+          handleConfirmarPago(cita.id)
         }
-        className="w-full rounded-xl bg-green-700 px-3 py-2 text-xs font-black text-white shadow-sm transition hover:bg-green-800 disabled:opacity-50"
+        className="w-full rounded-xl bg-nails-brown px-3 py-2 text-xs font-black text-white shadow-sm transition hover:text-nails-yellow disabled:opacity-50"
       >
         {estaProcesando
-          ? "Procesando..."
-          : "Marcar atendida"}
+          ? "Verificando..."
+          : "Confirmar pago"}
       </button>
     );
-  };
+  }
+
+  // Ya atendida
+  if (estaAtendida) {
+    return (
+      <div className="flex w-full items-center justify-center">
+        <span className="inline-flex items-center rounded-xl bg-green-100 px-3 py-2 text-xs font-black text-green-700">
+          Atendida
+        </span>
+      </div>
+    );
+  }
+
+  // Pago confirmado pero todavía no atendida
+  return (
+    <button
+      type="button"
+      disabled={estaProcesando}
+      onClick={() =>
+        handleMarcarAsistencia(cita.id)
+      }
+      className="w-full rounded-xl bg-green-700 px-3 py-2 text-xs font-black text-white shadow-sm transition hover:bg-green-800 disabled:opacity-50"
+    >
+      {estaProcesando
+        ? "Procesando..."
+        : "Marcar atendida"}
+    </button>
+  );
+};
 
   return (
     <section className="mx-auto w-full max-w-400 px-3 py-6 sm:px-5 lg:px-6 xl:px-8">
@@ -463,7 +474,7 @@ export default function AdminCitasTable({
                               <Clock
                                 size={13}
                               />
-                              {cita.hora_cita || "Por acordar"}
+                              {formatearHora(cita.hora_cita) || "Por acordar"}
                             </p>
                           </div>
                         </div>
@@ -697,7 +708,7 @@ export default function AdminCitasTable({
                                   size={12}
                                 />
 
-                                {cita.hora_cita || "—"}
+                                {formatearHora(cita.hora_cita) || "—"}
                               </span>
                             </div>
                           </td>

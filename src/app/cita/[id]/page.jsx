@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { obtenerCita } from "@/services/functionServices";
 import { CalendarCheck, CheckCircle2, Clock, CreditCard, Phone, Sparkles, User, } from "lucide-react";
-import { formatearFecha } from "@/src/utils/dateUtils"
+import { formatearFecha } from "@/utils/dateUtils"
 /* ============================================================
    HELPERS
 ============================================================ */

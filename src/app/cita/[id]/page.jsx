@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { obtenerCita } from "@/services/functionServices";
 import { CalendarCheck, CheckCircle2, Clock, CreditCard, Phone, Sparkles, User, } from "lucide-react";
-
+import { formatearFecha } from "@/utils/dateUtils"
 /* ============================================================
    HELPERS
 ============================================================ */
@@ -38,16 +38,7 @@ function formatearMetodoPago(metodo) {
   return metodos[metodo] || metodo || "No indicado";
 }
 
-const formatearFecha = (fecha) => {
-  if (!fecha) return "";
 
-  return new Intl.DateTimeFormat("es-PE", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    timeZone: "America/Lima",
-  }).format(new Date(fecha));
-};
 
 /* ============================================================
    PÁGINA DETALLE DE CITA
@@ -265,10 +256,7 @@ export default function CitaDetallePage() {
 
               {pagoVerificado? (
               <>
-               <p className="text-xs font-black uppercase tracking-widest opacity-80">
-                 Reserva registrada
-               </p>
-
+               
                <h1 className="mt-2 text-xl  sm:text-2xl">
                 Tu cita ha sido registrada correctamente!
                </h1>
@@ -543,7 +531,7 @@ export default function CitaDetallePage() {
                       Saldo pendiente
                     </span>
 
-                    <span className="font-black text-gray-900">
+                    <span className="font-black text-red">
                       S/{" "}
                       {montoRestante.toFixed(
                         2
@@ -560,7 +548,7 @@ export default function CitaDetallePage() {
 
             <div className="rounded-2xl bg-nails-brown/10 p-4 text-center">
             { pagoVerificado?
-            <p className="text-xs font-semibold leading-relaxed text-nails-brown">
+            <p className="text-xs font-bold leading-relaxed text-nails-brown">
                 Te esperamos!
               </p>
             :

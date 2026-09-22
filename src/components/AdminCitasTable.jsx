@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, Calendar, CheckCircle2, Clock, CreditCard, Phone, Sparkles, User, } from "lucide-react";
-
+import { formatearFecha } from "@/utils/dateUtils"
 /* =========================================================
    HELPERS
 ========================================================= */
@@ -37,16 +37,7 @@ function formatearMetodoPago(metodo) {
   return metodos[metodo] || metodo;
 }
 
-const formatearFecha = (fecha) => {
-  if (!fecha) return "";
 
-  return new Intl.DateTimeFormat("es-PE", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    timeZone: "America/Lima",
-  }).format(new Date(fecha));
-};
 /* =========================================================
    BADGE PAGO
 ========================================================= */
@@ -698,7 +689,7 @@ export default function AdminCitasTable({
                                 <Calendar
                                   size={ 12 }
                                 />
-                                {cita.fecha_cita || "—"}
+                                {formatearFecha(cita.fecha_cita) || "—"}
                               </span>
 
                               <span className="flex items-center gap-1 text-gray-600">

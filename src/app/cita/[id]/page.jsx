@@ -254,8 +254,8 @@ export default function CitaDetallePage() {
           ================================================== */}
 
              <div className={`px-5 py-7 text-center text-white sm:px-8 ${pagoVerificado ?
-             "bg-nails-brown"
-             : "bg-nails-caramelo"
+             "bg-nails-gold"
+             : "bg-nails-brown"
               }`}
               >
              <CalendarCheck
@@ -263,14 +263,14 @@ export default function CitaDetallePage() {
                className="mx-auto mb-3"
                />
 
-              {cita?.pago_confirmado ? (
+              {pagoVerificado? (
               <>
                <p className="text-xs font-black uppercase tracking-widest opacity-80">
                  Reserva registrada
                </p>
 
                <h1 className="mt-2 text-xl font-black sm:text-2xl">
-                Tu cita ha sido registrada correctamente
+                Tu cita ha sido registrada correctamente!
                </h1>
 
                <p className="mt-2 text-sm font-semibold opacity-90">
@@ -279,13 +279,11 @@ export default function CitaDetallePage() {
                </>
              ) : (
                <>
-              <p className="text-xs font-black uppercase tracking-widest opacity-80">
+              <p className="text-xs font-black text=red uppercase tracking-widest opacity-80">
                 Pago pendiente
               </p>
 
-               <h1 className="mt-2 text-xl font-black sm:text-2xl">
-                 Estamos verificando tu pago
-               </h1>
+              
 
                <p className="mt-2 text-sm font-semibold opacity-90">
                 La reserva será confirmada cuando validemos el pago

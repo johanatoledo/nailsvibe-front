@@ -84,48 +84,6 @@ function PagoBadge({ pagoVerificado }) {
   );
 }
 
-/* =========================================================
-   BADGE ESTADO CITA
-========================================================= */
-
-function EstadoBadge({
-  estado,
-  pagoVerificado,
-}) {
-  if (!pagoVerificado) {
-    return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-black uppercase text-amber-800">
-        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber-500" />
-
-        Pendiente
-      </span>
-    );
-  }
-
-  const atendida = esCitaAtendida(estado);
-
-  return (
-    <span
-      className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-black uppercase ${
-        atendida
-          ?  "text-green-700"
-          : "text-pink-700"
-      }`}
-    >
-      <span
-        className={`h-1.5 w-1.5 rounded-full ${
-          atendida
-            ? "bg-green-500"
-            : "bg-pink-500"
-        }`}
-      />
-
-      {atendida ? 
-      "Atendida"
-        : estado || "Confirmada"}
-    </span>
-  );
-}
 
 /* =========================================================
    SERVICIOS
@@ -276,7 +234,7 @@ const totalAtendidas = citas.filter( (cita) => esCitaAtendida( cita.estado ) ).l
   if (estaAtendida) {
     return (
       <div className="flex w-full items-center justify-center">
-        <span className="inline-flex items-center gap-1.5 rounded-xl bg-green-100 px-3 py-2 text-xs font-black text-green-700">
+        <span className="inline-flex items-center gap-1.5 rounded-xl  px-3 py-2 text-xs font-black text-green-700">
           <CheckCircle2
             size={14}
             aria-hidden="true"

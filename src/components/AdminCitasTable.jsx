@@ -293,11 +293,11 @@ const totalAtendidas = citas.filter( (cita) => esCitaAtendida( cita.estado ) ).l
             onClick={() => setFiltroEstado( "pendientes" ) }
             className={`rounded-xl px-3 py-2 text-xs font-black transition sm:px-4 sm:text-sm ${
               filtroEstado === "pendientes"
-                ? "bg-amber-700 text-white"
+                ? "bg-nails-brown text-white"
                 : "border bg-white text-amber-700 hover:bg-amber-50"
             }`}
           >
-            Pagos pendientes (
+            Por Confirmar (
             {totalPendientes})
           </button>
 
@@ -319,8 +319,8 @@ const totalAtendidas = citas.filter( (cita) => esCitaAtendida( cita.estado ) ).l
             onClick={() => setFiltroEstado( "atendidas" ) }
             className={`rounded-xl px-3 py-2 text-xs font-black transition sm:px-4 sm:text-sm ${
               filtroEstado === "atendidas"
-                ? "bg-green-700 text-white"
-                : "border bg-white text-green-700 hover:bg-green-50"
+                ? "bg-pink-700 text-white"
+                : "border bg-white text-pink-700 hover:bg-pink-50"
             }`}
           >
             Atendidas

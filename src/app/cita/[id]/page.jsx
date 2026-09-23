@@ -70,16 +70,10 @@ export default function CitaDetallePage() {
           setError("");
         }
       } catch (error) {
-        console.error(
-          "Error al cargar la cita:",
-          error
-        );
+        console.error("Error al cargar la cita:",error );
 
         if (activo) {
-          setError(
-            error.message ||
-              "No se pudo obtener la cita"
-          );
+          setError( error.message || "No se pudo obtener la cita" );
         }
       } finally {
         if (activo) {
@@ -103,9 +97,7 @@ export default function CitaDetallePage() {
     return () => {
       activo = false;
 
-      window.clearInterval(
-        intervalo
-      );
+      window.clearInterval( intervalo );
     };
   }, [id]);
 
@@ -324,11 +316,6 @@ export default function CitaDetallePage() {
                 )}
               </div>
 
-              {!pagoVerificado ? (
-                <p className="mt-3 text-xs font-medium text-red">
-                  Estamos verificando el pago de tu reserva. Esta página se actualizará automáticamente.
-                </p>
-              ) : null}
             </div>
 
             {/* ==================================================
@@ -442,7 +429,7 @@ export default function CitaDetallePage() {
                         servicio.id ||
                         index
                       }
-                      className="flex items-start justify-between gap-4 rounded-2xl  px-4 py-3"
+                      className="flex items-start justify-between gap-4   px-4 py-3"
                     >
                       <div className="flex items-start gap-2">
                         <Sparkles
@@ -539,13 +526,13 @@ export default function CitaDetallePage() {
                 AVISO
             ================================================== */}
 
-            <div className="rounded-2xl bg-nails-brown/10 p-4 text-center">
+            <div className="rounded-2xl  p-4 text-center">
             { pagoVerificado?
             <p className="text-xl font-bold leading-relaxed text-nails-brown">
                 Te esperamos!
               </p>
             :
-            <p className="text-xs font-semibold leading-relaxed text-nails-brown">
+            <p className="text-xs font-bold leading-relaxed text-nails-brown">
                 Conserva esta página para  consultar el estado de tu reserva.
               </p>
             }

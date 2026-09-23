@@ -171,14 +171,14 @@ export default function CitaDetallePage() {
         <Navbar />
 
         <section className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
-          <div className="rounded-3xl bg-green-700 p-8 text-white shadow-xl">
+          <div className="rounded-3xl bg-nails-caramelo p-8 text-white shadow-xl">
             <div className="flex flex-col items-center justify-center text-center">
               <CheckCircle2
                 size={96}
                 className="mb-5"
               />
 
-              <p className="text-xs font-black uppercase tracking-widest text-green-100">
+              <p className="text-xs font-black uppercase tracking-widest text-nails-white">
                 Cita atendida
               </p>
 
@@ -186,7 +186,7 @@ export default function CitaDetallePage() {
                 ¡Gracias por visitarnos!
               </h1>
 
-              <p className="mt-3 max-w-md text-sm font-medium text-green-50">
+              <p className="mt-3 max-w-md text-sm font-medium text-nails-white">
                 Esperamos que hayas disfrutado tu experiencia en Nails Vibe.
               </p>
             </div>
@@ -294,7 +294,7 @@ export default function CitaDetallePage() {
             >
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-xs font-black uppercase text-gray-500">
+                  <p className="text-xs font-black uppercase text-nails-brown">
                     Estado de la reserva
                   </p>
 
@@ -325,7 +325,7 @@ export default function CitaDetallePage() {
               </div>
 
               {!pagoVerificado ? (
-                <p className="mt-3 text-xs font-medium text-gray-600">
+                <p className="mt-3 text-xs font-medium text-red">
                   Estamos verificando el pago de tu reserva. Esta página se actualizará automáticamente.
                 </p>
               ) : null}
@@ -337,39 +337,39 @@ export default function CitaDetallePage() {
 
             <div>
               <p className="text-xs font-black uppercase tracking-wide text-nails-brown">
-                Datos de la cliente
+                Datos del cliente
               </p>
 
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 p-4">
+                <div className="flex items-center gap-3   p-4">
                   <User
                     size={20}
                     className="shrink-0 text-nails-brown"
                   />
 
                   <div>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs font-black text-gray-900">
                       Nombre
                     </p>
 
-                    <p className="font-black text-gray-900">
+                    <p className=" text-gray-500">
                       {cita.cliente_nombre || "—"}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 p-4">
+                <div className="flex items-center gap-3  p-4">
                   <Phone
                     size={20}
                     className="shrink-0 text-nails-brown"
                   />
 
                   <div>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs font-black text-gray-900">
                       Teléfono
                     </p>
 
-                    <p className="font-black text-gray-900">
+                    <p className=" text-gray-500">
                       {cita.cliente_telefono || "—"}
                     </p>
                   </div>
@@ -387,36 +387,36 @@ export default function CitaDetallePage() {
               </p>
 
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 p-4">
+                <div className="flex items-center gap-3 rounded-2xl  p-4">
                   <CalendarCheck
                     size={20}
                     className="text-nails-brown"
                   />
 
                   <div>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs font-black text-gray-900">
                       Fecha
                     </p>
 
-                    <p className="font-black text-gray-900">
+                    <p className=" text-gray-500">
                       {formatearFecha(cita.fecha_cita) ||
                         "Por confirmar"}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 p-4">
+                <div className="flex items-center gap-3 rounded-2xl  p-4">
                   <Clock
                     size={20}
                     className="text-nails-brown"
                   />
 
                   <div>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs font-black text-gray-900">
                       Hora
                     </p>
 
-                    <p className="font-black text-gray-900">
+                    <p className=" text-gray-500">
                       {formatearHora(cita.hora_cita) ||
                         "Por confirmar"}
                     </p>
@@ -442,7 +442,7 @@ export default function CitaDetallePage() {
                         servicio.id ||
                         index
                       }
-                      className="flex items-start justify-between gap-4 rounded-2xl border border-gray-100 bg-gray-50 px-4 py-3"
+                      className="flex items-start justify-between gap-4 rounded-2xl  px-4 py-3"
                     >
                       <div className="flex items-start gap-2">
                         <Sparkles
@@ -468,10 +468,7 @@ export default function CitaDetallePage() {
 
                       <span className="whitespace-nowrap text-sm font-black text-gray-900">
                         S/{" "}
-                        {Number(
-                          servicio.precio ||
-                            0
-                        ).toFixed(2)}
+                        {Number( servicio.precio || 0 ).toFixed(2)}
                       </span>
                     </li>
                   )
@@ -518,11 +515,9 @@ export default function CitaDetallePage() {
                       Reserva
                     </span>
 
-                    <span className="font-black text-nails-brown">
+                    <span className="font-black text-green-600">
                       S/{" "}
-                      {montoReserva.toFixed(
-                        2
-                      )}
+                      {montoReserva.toFixed( 2 )}
                     </span>
                   </div>
 
@@ -531,11 +526,9 @@ export default function CitaDetallePage() {
                       Saldo pendiente
                     </span>
 
-                    <span className="font-black text-red">
+                    <span className="font-black text-red-600">
                       S/{" "}
-                      {montoRestante.toFixed(
-                        2
-                      )}
+                      {montoRestante.toFixed( 2 )}
                     </span>
                   </div>
                 </div>

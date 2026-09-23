@@ -10,14 +10,7 @@ function crearFechaLocal(fecha) {
     return null;
   }
 
-  return new Date(
-    year,
-    month - 1,
-    day,
-    12,
-    0,
-    0
-  );
+  return new Date(year, month - 1, day, 12, 0, 0 );
 }
 
 export function formatearFecha(fecha) {
@@ -42,12 +35,7 @@ export function formatearHora(hora) {
 
     const fecha = new Date();
 
-    fecha.setHours(
-      horas,
-      minutos,
-      0,
-      0
-    );
+    fecha.setHours(horas, minutos, 0, 0);
 
     return new Intl.DateTimeFormat("es-PE", {
       hour: "numeric",

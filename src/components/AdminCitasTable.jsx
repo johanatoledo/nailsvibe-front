@@ -65,8 +65,8 @@ function PagoBadge({ pagoVerificado }) {
     <span
       className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-black uppercase leading-none ${
         pagoVerificado
-          ? "bg-green-100 text-green-700"
-          : "bg-amber-100 text-amber-800"
+          ?  "text-green-700"
+          : "text-amber-800"
       }`}
     >
       {pagoVerificado ? (
@@ -102,15 +102,14 @@ function EstadoBadge({
     );
   }
 
-  const atendida =
-    esCitaAtendida(estado);
+  const atendida = esCitaAtendida(estado);
 
   return (
     <span
       className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-black uppercase ${
         atendida
-          ? "bg-green-100 text-green-700"
-          : "bg-pink-100 text-pink-700"
+          ?  "text-green-700"
+          : "text-pink-700"
       }`}
     >
       <span
@@ -121,8 +120,8 @@ function EstadoBadge({
         }`}
       />
 
-      {atendida
-        ? "Atendida"
+      {atendida ? 
+      "Atendida"
         : estado || "Confirmada"}
     </span>
   );
@@ -172,16 +171,9 @@ function ServiciosDetalle({ servicios }) {
    COMPONENTE
 ========================================================= */
 
-export default function AdminCitasTable({
-  citas = [],
-  onMarcarAsistencia,
-  onConfirmarPago,
-}) {
-  const [filtroEstado, setFiltroEstado] =
-    useState("todos");
-
-  const [cargandoId, setCargandoId] =
-    useState(null);
+export default function AdminCitasTable({ citas = [], onMarcarAsistencia, onConfirmarPago, }) {
+  const [filtroEstado, setFiltroEstado] = useState("todos");
+  const [cargandoId, setCargandoId] = useState(null);
 
   /* =======================================================
      ACCIONES
@@ -197,9 +189,7 @@ export default function AdminCitasTable({
     }
   };
 
-  const handleMarcarAsistencia = async (
-    id
-  ) => {
+  const handleMarcarAsistencia = async ( id ) => {
     setCargandoId(id);
 
     try {
@@ -213,17 +203,9 @@ export default function AdminCitasTable({
    FILTROS
 ======================================================= */
 
-const citasFiltradas = citas.filter(
-  (cita) => {
-    const pagoVerificado =
-      normalizarBooleano(
-        cita.pago_verificado
-      );
-
-    const atendida =
-      esCitaAtendida(
-        cita.estado
-      );
+const citasFiltradas = citas.filter( (cita) => {
+    const pagoVerificado = normalizarBooleano( cita.pago_verificado );
+    const atendida = esCitaAtendida( cita.estado );
 
     switch (filtroEstado) {
       case "pendientes":
@@ -231,8 +213,7 @@ const citasFiltradas = citas.filter(
 
       case "confirmadas":
         return (
-          pagoVerificado &&
-          !atendida
+          pagoVerificado && !atendida
         );
 
       case "atendidas":
@@ -244,32 +225,9 @@ const citasFiltradas = citas.filter(
   }
 );
 
-const totalPendientes =
-  citas.filter(
-    (cita) =>
-      !normalizarBooleano(
-        cita.pago_verificado
-      )
-  ).length;
-
-const totalConfirmadas =
-  citas.filter(
-    (cita) =>
-      normalizarBooleano(
-        cita.pago_verificado
-      ) &&
-      !esCitaAtendida(
-        cita.estado
-      )
-  ).length;
-
-const totalAtendidas =
-  citas.filter(
-    (cita) =>
-      esCitaAtendida(
-        cita.estado
-      )
-  ).length;
+const totalPendientes = citas.filter( (cita) =>  !normalizarBooleano( cita.pago_verificado ) ).length;
+const totalConfirmadas = citas.filter( (cita) => normalizarBooleano( cita.pago_verificado ) && !esCitaAtendida( cita.estado ) ).length;
+const totalAtendidas = citas.filter( (cita) => esCitaAtendida( cita.estado ) ).length;
   /* =======================================================
      SIN CITAS
   ======================================================= */
@@ -294,17 +252,9 @@ const totalAtendidas =
      ACCIÓN
   ======================================================= */
 
- const renderAccion = (
-  cita,
-  pagoVerificado
-) => {
-  const estaProcesando =
-    cargandoId === cita.id;
-
-  const estaAtendida =
-    esCitaAtendida(
-      cita.estado
-    );
+ const renderAccion = ( cita, pagoVerificado ) => {
+  const estaProcesando = cargandoId === cita.id;
+  const estaAtendida = esCitaAtendida( cita.estado );
 
   // Pago pendiente
   if (!pagoVerificado) {
@@ -312,9 +262,7 @@ const totalAtendidas =
       <button
         type="button"
         disabled={estaProcesando}
-        onClick={() =>
-          handleConfirmarPago(cita.id)
-        }
+        onClick={() => handleConfirmarPago(cita.id) }
         className="w-full rounded-xl bg-nails-brown px-3 py-2 text-xs font-black text-white shadow-sm transition hover:text-nails-yellow disabled:cursor-not-allowed disabled:opacity-50"
       >
         {estaProcesando
@@ -345,11 +293,7 @@ const totalAtendidas =
     <button
       type="button"
       disabled={estaProcesando}
-      onClick={() =>
-        handleMarcarAsistencia(
-          cita.id
-        )
-      }
+      onClick={() => handleMarcarAsistencia( cita.id ) }
       className="w-full rounded-xl bg-green-700 px-3 py-2 text-xs font-black text-white shadow-sm transition hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-50"
     >
       {estaProcesando
@@ -368,30 +312,12 @@ const totalAtendidas =
         =============================================== */}
 
         <div className="flex w-full flex-wrap gap-2 border-b bg-gray-50 p-4 sm:gap-3 sm:p-5">
+       
           <button
             type="button"
-            onClick={() =>
-              setFiltroEstado("todos")
-            }
+            onClick={() => setFiltroEstado( "pendientes" ) }
             className={`rounded-xl px-3 py-2 text-xs font-black transition sm:px-4 sm:text-sm ${
-              filtroEstado === "todos"
-                ? "bg-nails-brown text-white"
-                : "border bg-white text-gray-700 hover:bg-gray-100"
-            }`}
-          >
-            Todas ({citas.length})
-          </button>
-
-          <button
-            type="button"
-            onClick={() =>
-              setFiltroEstado(
-                "pendientes"
-              )
-            }
-            className={`rounded-xl px-3 py-2 text-xs font-black transition sm:px-4 sm:text-sm ${
-              filtroEstado ===
-              "pendientes"
+              filtroEstado === "pendientes"
                 ? "bg-amber-700 text-white"
                 : "border bg-white text-amber-700 hover:bg-amber-50"
             }`}
@@ -402,38 +328,28 @@ const totalAtendidas =
 
           <button
             type="button"
-            onClick={() =>
-              setFiltroEstado(
-                "confirmadas"
-              )
-            }
+            onClick={() => setFiltroEstado( "confirmadas" ) }
             className={`rounded-xl px-3 py-2 text-xs font-black transition sm:px-4 sm:text-sm ${
-              filtroEstado ===
-              "confirmadas"
+              filtroEstado === "confirmadas"
                 ? "bg-green-700 text-white"
                 : "border bg-white text-green-700 hover:bg-green-50"
             }`}
           >
-            Confirmadas (
-            {totalConfirmadas})
+            Confirmadas 
+            ({totalConfirmadas})
           </button>
 
            <button
             type="button"
-            onClick={() =>
-              setFiltroEstado(
-                "atendidas"
-              )
-            }
+            onClick={() => setFiltroEstado( "atendidas" ) }
             className={`rounded-xl px-3 py-2 text-xs font-black transition sm:px-4 sm:text-sm ${
-              filtroEstado ===
-              "atendidas"
+              filtroEstado === "atendidas"
                 ? "bg-green-700 text-white"
                 : "border bg-white text-green-700 hover:bg-green-50"
             }`}
           >
-            Atendidas (
-            {totalAtendidas})
+            Atendidas
+           ( {totalAtendidas})
           </button>
         </div>
 
@@ -668,45 +584,16 @@ const totalAtendidas =
 
                 <thead className="bg-nails-brown font-black uppercase tracking-wider text-nails-white">
                   <tr>
-                    <th className="px-3 py-4">
-                      ID
-                    </th>
-
-                    <th className="px-3 py-4">
-                      Cliente
-                    </th>
-
-                    <th className="px-3 py-4">
-                      Fecha / Hora
-                    </th>
-
-                    <th className="px-3 py-4">
-                      Servicios
-                    </th>
-
-                    <th className="px-3 py-4">
-                      Pago
-                    </th>
-
-                    <th className="px-3 py-4">
-                      Operación
-                    </th>
-
-                    <th className="px-3 py-4">
-                      Reserva
-                    </th>
-
-                    <th className="px-3 py-4">
-                      Restante
-                    </th>
-
-                    <th className="px-3 py-4 text-center">
-                      Estado
-                    </th>
-
-                    <th className="px-3 py-4 text-center">
-                      Acción
-                    </th>
+                    <th className="px-3 py-4"> ID </th>
+                    <th className="px-3 py-4"> Cliente </th>
+                    <th className="px-3 py-4"> Fecha / Hora </th>
+                    <th className="px-3 py-4"> Servicios </th>
+                    <th className="px-3 py-4"> Pago </th>
+                    <th className="px-3 py-4"> Operación </th>
+                    <th className="px-3 py-4"> Reserva </th>
+                    <th className="px-3 py-4"> Restante </th>
+                    <th className="px-3 py-4 text-center"> Estado </th>
+                    <th className="px-3 py-4 text-center"> Acción </th>
                   </tr>
                 </thead>
 
@@ -720,15 +607,11 @@ const totalAtendidas =
                      const numeroOperacion = cita.numero_operacion ||  cita.yape_operacion || "—";
 
                       return (
-                        <tr
-                          key={cita.id}
-                          className="align-top transition-colors hover:bg-gray-50"
-                        >
+                        <tr key={cita.id} className="align-top transition-colors hover:bg-gray-50">
+                         
                           {/* ID */}
 
-                          <td className="px-3 py-4 font-black text-gray-900">
-                            #{cita.id}
-                          </td>
+                          <td className="px-3 py-4 font-black text-gray-900"> #{cita.id} </td>
 
                           {/* CLIENTE */}
 

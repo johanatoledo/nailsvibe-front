@@ -319,8 +319,8 @@ const totalAtendidas = citas.filter( (cita) => esCitaAtendida( cita.estado ) ).l
             onClick={() => setFiltroEstado( "atendidas" ) }
             className={`rounded-xl px-3 py-2 text-xs font-black transition sm:px-4 sm:text-sm ${
               filtroEstado === "atendidas"
-                ? "bg-pink-700 text-white"
-                : "border bg-white text-pink-700 hover:bg-pink-50"
+                ? "bg-nails-yellow text-nails-gold"
+                : "border bg-nails-yellow text-nails-gold hover:bg-nails-gold hover:text-nails-yellow"
             }`}
           >
             Atendidas
@@ -356,12 +356,8 @@ const totalAtendidas = citas.filter( (cita) => esCitaAtendida( cita.estado ) ).l
 
                       <div className="mb-4 flex items-start justify-between gap-3">
                         <div>
-                          <p className="text-xs font-black uppercase text-nails-brown">
-                            Cita #{cita.id}
-                          </p>
-
                           <h3 className="mt-1 text-base font-black uppercase leading-tight text-gray-900">
-                            {cita.cliente_nombre ||  "Cliente"}
+                              Cita #{cita.id}
                           </h3>
                         </div>
 
@@ -496,13 +492,13 @@ const totalAtendidas = citas.filter( (cita) => esCitaAtendida( cita.estado ) ).l
                               Reserva
                             </p>
 
-                            <p className="mt-1 text-sm font-black text-nails-brown">
+                            <p className="mt-1 text-sm font-black text-green-700">
                               S/{" "} {montoReserva.toFixed( 2 )}
                             </p>
                           </div>
 
                           <div>
-                            <p className="text-[10px] font-black uppercase text-nails-brown">
+                            <p className="text-[10px] font-black uppercase text-red-700">
                               Restante
                             </p>
 
